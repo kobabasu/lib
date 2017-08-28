@@ -1,0 +1,50 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: kobabasu/phantomjs:0.27
+      
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: cp gulp/dir.es6.sample gulp/dir.es6
+
+      - run: cp package.json.sample package.json
+
+      - run: cp bower.json.sample bower.json
+
+      - run: cp gulpfile.babel.js.sample gulpfile.babel.js
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "bower.json" }}
+          - v1-dependencies-
+
+      - run: npm install
+
+      - run: bower install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - save_cache:
+          paths:
+            - vendor
+          key: v1-dependencies-{{ checksum "bower.json" }}
+        
+      - run: npm test
+
+      - store_test_results:
+          path: ./results
+
+      - store_artifacts:
+          path: ./results

@@ -1,0 +1,20 @@
+# common
+.DS_Store
+node_modules/
+/vendor/
+package-lock.json
+
+# config
+package.json
+bower.json
+gulpfile.babel.js
+gulp/dir.es6
+
+# build files
+test-results-nodejs.xml
+test-results-phantomjs.xml
+
+# exclude
+
+# gitkeep
+!.gitkeep

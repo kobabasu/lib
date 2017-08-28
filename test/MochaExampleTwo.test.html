@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>MochaExampleTwo</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../vendor/mocha/mocha.css" />
+    <script src="../js/mocha-example.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../vendor/mocha/mocha.js"></script>
+    <script src="../vendor/chai/chai.js"></script>
+    <script src="../vendor/sinonjs/sinon.js"></script>
+
+    <script>
+      mocha.ui('bdd');
+      var assert = chai.assert;
+
+      var mochaExampleTwo = new MochaExampleTwo();
+    </script>
+
+    <script src="MochaExampleTwo.test.js"></script>
+      
+    <script>mocha.run();</script>
+  </body>
+</html>
