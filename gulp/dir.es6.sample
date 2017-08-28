@@ -1,0 +1,40 @@
+/**
+ * rootはnode_modulesが存在するディレクトリからのレポジトリの
+ * ドキュメントルートを指定
+ *
+ * node_modulesはpackage.jsonからみたnode_modules/の場所を指定
+ * (mocha-phantomjs-coreで使用)
+ *
+ * nameはtask名の先頭になる
+ */
+
+const root = './';
+const node_modules = './';
+
+export const dir = {
+  name: '',
+
+  root:    root,
+  src:     root + 'src/',
+  dist:    root + '../css/',
+  docs:    root + 'docs/postcss/',
+
+  example: {
+    js: {
+      src: root + 'example/js/',
+      test: root + 'example/test/',
+
+      report:  {
+        nodejs: root + 'example/results/test-results-nodejs.xml',
+        phantomjs: root + 'example/results/test-results-phantomjs.xml'
+      },
+    },
+
+    css: {
+      src: root + 'src/',
+      dist: root + 'postcss/example/css/'
+    }
+  },
+
+  node_module_path: node_modules
+}
