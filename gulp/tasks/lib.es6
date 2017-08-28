@@ -6,57 +6,17 @@ import shell from '/usr/local/lib/node_modules/gulp-shell';
 
 import { dir } from '../dir.es6';
 
-class Postcss extends DefaultRegistry {
+class Lib extends DefaultRegistry {
 
   init() {
     // task名の接頭辞を設定
     let prefix = (dir.name == '') ? '' : dir.name + ':';
 
     /*
-     * postcss
+     * nodejs
      */
-    const style = {
-      src:     dir.src  + 'style.css',
-      dist:    dir.dist + 'style.css',
-      watch:   dir.src  + '**/*.*'
-    };
-
-    gulp.task(prefix + 'postcss', shell.task([`
-      postcss ${style.src} \
-      -m \
-      -o ${style.dist};
-
-      postcss ${dir.pages + '**/*.css'} \
-      -m \
-      -c ${dir.root + 'postcss.config.js'} \
-      -d ${dir.dist};
-    `]));
-
-
-    /*
-     * example
-     */
-    const example = {
-      dist:  dir.example.css.dist
-    };
-
-    gulp.task(prefix + 'postcss:example', shell.task([`
-      postcss ${style.src} \
-      -m \
-      -o ${dir.example.css.dist + 'style.css'};
-
-      postcss ${dir.pages + '**/*.css'} \
-      -m \
-      -c ${dir.root + 'postcss.config.js'} \
-      -d ${dir.example.css.dist};
-    `]));
-
-
-    /*
-     * example:nodejs
-     */
-    gulp.task(prefix + 'postcss:example:nodejs', shell.task([`
-      mocha ${dir.example.js.test}*.js \
+    gulp.task(prefix + 'lib:nodejs', shell.task([`
+      mocha ${dir.test}*.js \
       -g '^(?!DOM)'
     `]));
 
@@ -64,8 +24,8 @@ class Postcss extends DefaultRegistry {
     /*
      * example:phantomjs
      */
-    gulp.task(prefix + 'postcss:example:phantomjs', shell.task([`
-      for f in \`ls ${dir.example.js.test}*.html\`
+    gulp.task(prefix + 'lib:phantomjs', shell.task([`
+      for f in \`ls ${dir.test}*.html\`
       do
         phantomjs ${dir.node_module_path}node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js $f
       done
@@ -75,10 +35,10 @@ class Postcss extends DefaultRegistry {
     /*
      * nodejs:report
      */
-    gulp.task(prefix + 'postcss:example:nodejs:report', shell.task([`
-      mocha ${dir.example.js.test}*.js \
+    gulp.task(prefix + 'lib:nodejs:report', shell.task([`
+      mocha ${dir.test}*.js \
       --reporter mocha-junit-reporter \
-      --reporter-options mochaFile=${dir.example.js.report.nodejs} \
+      --reporter-options mochaFile=${dir.report.nodejs} \
       -g '^(?!DOM)'
     `]));
 
@@ -86,13 +46,13 @@ class Postcss extends DefaultRegistry {
     /*
      * phantomjs:report 
      */
-    gulp.task(prefix + 'postcss:example:phantomjs:report', shell.task([`
-      if [ -f "${dir.example.js.report.phantomjs}" ]; then
-        rm ${dir.example.js.report.phantomjs};
+    gulp.task(prefix + 'lib:phantomjs:report', shell.task([`
+      if [ -f "${dir.report.phantomjs}" ]; then
+        rm ${dir.report.phantomjs};
       fi
-      for f in \`ls ${dir.example.js.test}*.html\`
+      for f in \`ls ${dir.test}*.html\`
       do
-        phantomjs ${dir.node_module_path}node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js $f xunit >> ${dir.example.js.report.phantomjs}
+        phantomjs ${dir.node_module_path}node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js $f xunit >> ${dir.report.phantomjs}
       done
     `]));
 
@@ -100,43 +60,33 @@ class Postcss extends DefaultRegistry {
     /*
      * example:mocha
      */
-    gulp.task(prefix + 'postcss:example:mocha', gulp.series(
-        prefix + 'postcss:example:nodejs',
-        prefix + 'postcss:example:phantomjs'
+    gulp.task(prefix + 'lib:mocha', gulp.series(
+        prefix + 'lib:nodejs',
+        prefix + 'lib:phantomjs'
     ));
 
 
     /*
      *  example:mocha:report
      */
-    gulp.task(prefix + 'postcss:example:mocha:report', gulp.series(
-        prefix + 'postcss:example:nodejs:report',
-        prefix + 'postcss:example:phantomjs:report'
+    gulp.task(prefix + 'lib:mocha:report', gulp.series(
+        prefix + 'lib:nodejs:report',
+        prefix + 'lib:phantomjs:report'
     ));
 
 
     /*
      * watch
      */
-    gulp.task(prefix + 'postcss:watch', () => {
+    gulp.task(prefix + 'lib:watch', () => {
       gulp
         .watch(
-          [style.watch],
-          gulp.series(prefix + 'postcss')
+          [lib.src],
+          gulp.series(prefix + 'lib:mocha')
         )
         .on('error', err => process.exit(1));
     });
-
-
-    /*
-     * build
-     */
-    gulp.task(prefix + 'postcss:build',
-      gulp.series(
-        prefix + 'postcss'
-        // prefix + 'postcss:docs'
-    ));
   }
 };
 
-module.exports = new Postcss();
+module.exports = new Lib();
