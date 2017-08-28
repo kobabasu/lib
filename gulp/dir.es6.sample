@@ -16,24 +16,13 @@ export const dir = {
 
   root:    root,
   src:     root + 'src/',
-  dist:    root + '../css/',
-  docs:    root + 'docs/postcss/',
+  test:    root + 'test/',
+  dist:    root + '../js/',
+  docs:    root + 'docs/lib/',
 
-  example: {
-    js: {
-      src: root + 'example/js/',
-      test: root + 'example/test/',
-
-      report:  {
-        nodejs: root + 'example/results/test-results-nodejs.xml',
-        phantomjs: root + 'example/results/test-results-phantomjs.xml'
-      },
-    },
-
-    css: {
-      src: root + 'src/',
-      dist: root + 'postcss/example/css/'
-    }
+  report:  {
+    nodejs: root + 'results/test-results-nodejs.xml',
+    phantomjs: root + 'results/test-results-phantomjs.xml'
   },
 
   node_module_path: node_modules
