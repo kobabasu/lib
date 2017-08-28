@@ -1,15 +1,16 @@
 {
-  "name": "postcss-app",
+  "name": "micro-lib",
   "version": "0.0.1",
-  "description": "postcss minimum app",
-  "main": "./src/style.css",
+  "description": "javascript lib minimum app",
+  "main": "./src/ready.js",
   "repository": {
     "type": "git",
-    "url": "//github.com/kobabasu/micro-postcss.git"
+    "url": "//github.com/kobabasu/micro-lib.git"
   },
   "keywords": [
-    "postcss-cli",
-    "postcss-cssnext"
+    "mocha",
+    "chai",
+    "phantomjs",
   ],
   "os": [
     "darwin",
@@ -20,26 +21,6 @@
   "dependencies": {},
 
   "devDependencies": {
-    "cssnano": "next",
-    "postcss": "^6.0.0",
-    "postcss-assets": "*",
-    "postcss-cssnext": "*",
-    "postcss-url": "*",
-    "postcss-import": "*",
-    "postcss-discard-comments": "*",
-    "postcss-reporter": "*",
-    "postcss-flexibility": "*",
-    "postcss-mixins": "*",
-    "postcss-extend": "*",
-    "postcss-for": "*",
-    "postcss-for-variables": "*",
-    "lost": "*",
-
-    "calipers": "*",
-    "calipers-jpeg": "*",
-    "calipers-png": "*",
-    "calipers-gif": "*",
-
     "mocha": "*",
     "chai": "*",
     "sinon": "*",
@@ -52,9 +33,8 @@
   },
 
   "scripts": {
-    "global": "npm install -g postcss-cli phantomjs-prebuilt mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
-    "preinstall": "cp -r -n ./stylesheets ../",
-    "test": "gulp postcss:example:mocha:report"
+    "global": "npm install -g phantomjs-prebuilt mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
+    "test": "gulp lib:mocha:report"
   },
 
   "preferGlobal": true,
