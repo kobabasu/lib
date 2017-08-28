@@ -1,10 +1,9 @@
 [![CircleCI](https://circleci.com/gh/kobabasu/micro-lib.svg?style=shield&circle-token=14c34d44469b7917518845857413cc7156d32fd9)](https://circleci.com/gh/kobabasu/micro-lib)
 
 # micro-lib
-postcssを利用するためnodejs環境とpostcss-cliのインストールが必要
 
 ```
-git add submodule git@github.com-kobabasu:kobabasu/micro-postcss.git postcss 
+git add submodule git@github.com-kobabasu:kobabasu/micro-lib.git lib
 ```
 
 ## npm
