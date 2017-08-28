@@ -3,5 +3,5 @@
 import gulp from 'gulp';
 import shell from '/usr/local/lib/node_modules/gulp-shell';
 
-import postcss   from './gulp/tasks/postcss.es6';
-gulp.registry(postcss);
+import lib   from './gulp/tasks/lib.es6';
+gulp.registry(lib);
