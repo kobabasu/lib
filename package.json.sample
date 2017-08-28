@@ -10,7 +10,7 @@
   "keywords": [
     "mocha",
     "chai",
-    "phantomjs",
+    "phantomjs"
   ],
   "os": [
     "darwin",
