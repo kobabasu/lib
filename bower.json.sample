@@ -1,18 +1,7 @@
 {
-  "name": "postcss-app",
+  "name": "micro-lib",
   "version": "0.0.1",
   "dependencies": {
-    "jquery-modern": "jquery#3",
-    "jquery-legacy": "jquery#^1",
-    "animejs": null,
-
-    "normalize.css": null,
-    "animate.css": null,
-
-    "icomoon": null,
-    "fontawesome": null,
-    "material-design-icons-iconfont": null,
-
     "mocha": null,
     "chai": null,
     "sinonjs": null
