@@ -4,7 +4,7 @@ if (!('chai' in global)) {
   var sinon = require('sinon');
   var assert = chai.assert;
 
-  var module = require('../js/mocha-example.js');
+  var module = require('../src/mocha-example.js');
   var mochaExample = new module.MochaExample();
 };
 
