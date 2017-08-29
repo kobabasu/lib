@@ -16,6 +16,7 @@ export const dir = {
 
   root:    root,
   src:     root + 'src/',
+  modules: root + 'modules/',
   test:    root + 'test/',
   dist:    root + '../js/',
   docs:    root + 'docs/lib/',
