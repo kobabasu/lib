@@ -13,6 +13,32 @@ class Lib extends DefaultRegistry {
     let prefix = (dir.name == '') ? '' : dir.name + ':';
 
     /*
+     * lib
+     */
+    gulp.task(prefix + 'lib', shell.task([`
+      browserify ${dir.src + 'lib.js'} -o ${dir.root + '../js/lib.js'}
+    `]));
+
+
+    /*
+     * min
+     */
+    gulp.task(prefix + 'lib:min', shell.task([`
+      browserify ${dir.src + 'lib.js'} | uglifyjs -o ${dir.root + '../js/lib.min.js'}
+    `]));
+
+
+    /*
+     * copy
+     */
+    gulp.task(prefix + 'lib:copy', shell.task([`
+      cp ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
+      browserify ${dir.src + 'ready.js'} | uglifyjs -o ${dir.root + '../js/ready.min.js'};
+      cp ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
+    `]));
+
+
+    /*
      * nodejs
      */
     gulp.task(prefix + 'lib:nodejs', shell.task([`
@@ -58,7 +84,7 @@ class Lib extends DefaultRegistry {
 
 
     /*
-     * example:mocha
+     * mocha
      */
     gulp.task(prefix + 'lib:mocha', gulp.series(
         prefix + 'lib:nodejs',
@@ -67,7 +93,7 @@ class Lib extends DefaultRegistry {
 
 
     /*
-     *  example:mocha:report
+     * mocha:report
      */
     gulp.task(prefix + 'lib:mocha:report', gulp.series(
         prefix + 'lib:nodejs:report',
@@ -81,11 +107,22 @@ class Lib extends DefaultRegistry {
     gulp.task(prefix + 'lib:watch', () => {
       gulp
         .watch(
-          [lib.src],
+          [lib.src, lib.modules, lib.test],
           gulp.series(prefix + 'lib:mocha')
         )
         .on('error', err => process.exit(1));
     });
+
+
+    /*
+     * build
+     */
+    gulp.task(prefix + 'lib:build', gulp.series(
+        prefix + 'lib:mocha:report',
+        prefix + 'lib',
+        prefix + 'lib:min',
+        prefix + 'lib:copy'
+    ));
   }
 };
 

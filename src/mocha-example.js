@@ -1,4 +1,9 @@
 /**
+ * mocha-example.js
+ * @file mochaのテストのサンプル用ファイル
+ */
+
+/**
  * MochaExample
  *
  * @return {void}
