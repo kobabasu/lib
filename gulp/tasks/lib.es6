@@ -24,7 +24,17 @@ class Lib extends DefaultRegistry {
      * min
      */
     gulp.task(prefix + 'lib:min', shell.task([`
-      browserify ${dir.src + 'lib.js'} | uglifyjs -o ${dir.root + '../js/lib.js'}
+      browserify ${dir.src + 'lib.js'} | uglifyjs -o ${dir.root + '../js/lib.min.js'}
+    `]));
+
+
+    /*
+     * copy
+     */
+    gulp.task(prefix + 'lib:copy', shell.task([`
+      cp ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
+      browserify ${dir.src + 'ready.js'} | uglifyjs -o ${dir.root + '../js/ready.min.js'};
+      cp ${dir.src + 'settings.js'} ${dir.root + '../js/settings.js'};
     `]));
 
 
@@ -109,7 +119,9 @@ class Lib extends DefaultRegistry {
      */
     gulp.task(prefix + 'lib:build', gulp.series(
         prefix + 'lib:mocha:report',
-        prefix + 'lib:min'
+        prefix + 'lib',
+        prefix + 'lib:min',
+        prefix + 'lib:cooy'
     ));
   }
 };
