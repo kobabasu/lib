@@ -1,8 +1,8 @@
-/*
- * -----------
- * settings
- * -----------
+/**
+ * ready-setting.js
+ * @file ready.jsの設定
  */
+
 var ready = new Ready({
   'preload': {
     'img': ['imgs/clear.png']
@@ -12,31 +12,34 @@ var ready = new Ready({
   },
 
   'complete': function() {
-    new DetectViewport({'name': 'sp', 'viewport': '(max-width: 767px)'});
-    new DetectViewport({'name': '5k', 'viewport': '(min-width: 1280px)'});
-    new InnerLink();
-    new SlideMenu();
-    /* new HumbergerMenu(); */
-
-    new RippleEffect();
-    this.updateCopyright = new UpdateCopyright({'prefix': '2013-'});
-    this.updateCopyright.init();
-
     this.imagesrcset = new ImageSrcset();
-    this.scrolltop = new ScrollTop();
+    new DetectViewport({
+      'name': 'sp',
+      'viewport': '(max-width: 767px)'
+    });
+    new DetectViewport({
+      'name': '5k',
+      'viewport': '(min-width: 1280px)'
+    });
+    new InnerLink();
+    this.inview = new InView();
     this.scrollit = new ScrollIt();
     this.scrollit.init();
-    this.inview = new InView();
-
+    this.scrolltop = new ScrollTop();
+    new SlideMenu();
+    /* new HumbergerMenu(); */
     this.slideshow = new SlideShow();
     this.slideshow.start();
+    new RippleEffect();
+    this.updateCopyright = new UpdateCopyright();
+    this.updateCopyright.init();
   },
 
   'scroll': function() {
     this.imagesrcset.lazyload();
+    this.scrollit.animate();
     this.scrolltop.animate();
     this.inview.animate();
-    this.scrollit.animate();
   },
 
   'resize': function() {
@@ -45,6 +48,3 @@ var ready = new Ready({
 });
 
 ready.init();
-
-
-// vim: foldmethod=marker:ts=2:sts=0:sw=2
