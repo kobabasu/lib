@@ -9,6 +9,7 @@ package.json
 bower.json
 gulpfile.babel.js
 gulp/dir.es6
+src/lib.js
 
 # build files
 test-results-nodejs.xml
