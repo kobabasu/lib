@@ -121,7 +121,7 @@ class Lib extends DefaultRegistry {
         prefix + 'lib:mocha:report',
         prefix + 'lib',
         prefix + 'lib:min',
-        prefix + 'lib:cooy'
+        prefix + 'lib:copy'
     ));
   }
 };
