@@ -34,7 +34,7 @@ class Lib extends DefaultRegistry {
     gulp.task(prefix + 'lib:copy', shell.task([`
       cp ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
       browserify ${dir.src + 'ready.js'} | uglifyjs -o ${dir.root + '../js/ready.min.js'};
-      cp ${dir.src + 'settings.js'} ${dir.root + '../js/settings.js'};
+      cp ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
     `]));
 
 
