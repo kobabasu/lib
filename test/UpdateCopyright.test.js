@@ -4,7 +4,7 @@ if (!('chai' in global)) {
   var sinon = require('sinon');
   var assert = chai.assert;
 
-  var module = require('../src/dom.js');
+  var module = require('../modules/UpdateCopyright.js');
   var updateCopyright = new module.UpdateCopyright();
 };
 
