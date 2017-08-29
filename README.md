@@ -54,3 +54,12 @@ Dockerfileを編集しbuildしdocker hubにpush
 1. `docker exec phantomjs gulp mocha:report`や`vagrant ssh -c 'docker exec phantomjs gulp mocha:report'`で確認
 1. 問題なければ`.circleci/config.yml`のimagesのバージョンを変更
 1. git pushで確認
+
+## build
+gulp lib:buildで一つ上の階層のjsに以下が生成される
+
+1. ready.js
+1. ready.min.js
+1. settings.js
+1. lib.js
+1. lib.min.js
