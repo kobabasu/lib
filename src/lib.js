@@ -4,15 +4,15 @@
  */
 
 
-require('./DetectViewport.js');
-require('./HumbergerMenu.js');
-require('./ImageSrcset.js');
-require('./InView.js');
-require('./InnerLink.js');
-require('./RippleEffect.js');
-require('./ScrollIt.js');
-require('./ScrollTop.js');
-require('./SlideMenu.js');
-require('./SlideShow.js');
-require('./UpdateCopyright.js');
-require('./ScrollIt.js');
+require('../modules/DetectViewport.js');
+require('../modules/HumbergerMenu.js');
+require('../modules/ImageSrcset.js');
+require('../modules/InView.js');
+require('../modules/InnerLink.js');
+require('../modules/RippleEffect.js');
+require('../modules/ScrollIt.js');
+require('../modules/ScrollTop.js');
+require('../modules/SlideMenu.js');
+require('../modules/SlideShow.js');
+require('../modules/UpdateCopyright.js');
+require('../modules/ScrollIt.js');
