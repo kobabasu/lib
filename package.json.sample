@@ -33,7 +33,8 @@
   },
 
   "scripts": {
-    "global": "npm install -g phantomjs-prebuilt mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
+    "global": "npm install -g phantomjs-prebuilt browserify uglify-js mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
+    "preinstall": "mkdir -p ../js",
     "test": "gulp lib:mocha:report"
   },
 
