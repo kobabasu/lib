@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: kobabasu/phantomjs:0.30
       
-    working_directory: ~/repo
+    working_directory: ~/app/repo
 
     steps:
       - checkout
