@@ -32,9 +32,10 @@ class Lib extends DefaultRegistry {
      * copy
      */
     gulp.task(prefix + 'lib:copy', shell.task([`
-      cp ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
+      cp -n ${dir.src + 'lib.hjson.sample'} ${dir.root + '../js/lib.hjson'};
+      cp -n ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
+      cp -n ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
       uglifyjs ${dir.src + 'ready.js'} -o ${dir.root + '../js/ready.min.js'};
-      cp ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
     `]));
 
 
