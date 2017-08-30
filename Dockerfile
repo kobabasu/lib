@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y curl git nodejs npm fontconfig && \
     npm cache clean && npm install -g n && n stable && \
     ln -s /usr/local/bin/node /usr/bin/node && \
     npm install -g pm2 phantomjs-prebuilt bower && \
-    npm install -g browserify uglify-js && \
+    npm install -g hjson jq uglify-js && \
     npm install -g 'github:gulpjs/gulp.git#4.0' gulp-shell gulp-cli && \
     npm install -g mocha mocha-junit-reporter && \
     rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
