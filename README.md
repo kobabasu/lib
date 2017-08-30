@@ -91,6 +91,6 @@ gulp lib:buildで一つ上の階層のjsに以下が生成される
 
 ## edit
 1. package.json, bower.json, gulp/dir.es6を作成
-1. まず`gulp lib:build`もしくは`gulp lib:copy`を実行
+1. npm installでlib:buildが実行され../js/にコピーされる
 1. 生成した../js/lib.hjsonで必要なmoduleを読み込む
 1. `lib`, `lib:min`でビルド
