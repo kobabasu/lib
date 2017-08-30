@@ -16,7 +16,7 @@ class Lib extends DefaultRegistry {
      * lib
      */
     gulp.task(prefix + 'lib', shell.task([`
-      jq -c '.[]' ${dir.setting + 'lib.json'} | xargs cat > ${dir.root + '../js/lib.js'}
+      hjson -j ${dir.setting + 'lib.hjson'} | jq -c '.[]' | xargs cat > ${dir.root + '../js/lib.js'}
     `]));
 
 
@@ -24,7 +24,7 @@ class Lib extends DefaultRegistry {
      * min
      */
     gulp.task(prefix + 'lib:min', shell.task([`
-      jq -c '.[]' ${dir.setting + 'lib.json'} | xargs uglifyjs -c -o ${dir.root + '../js/lib.min.js'}
+      hjson -j ${dir.setting + 'lib.hjson'} | jq -c '.[]' | xargs uglifyjs -c -o ${dir.root + '../js/lib.min.js'}
     `]));
 
 
