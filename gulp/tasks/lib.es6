@@ -16,7 +16,7 @@ class Lib extends DefaultRegistry {
      * lib
      */
     gulp.task(prefix + 'lib', shell.task([`
-      browserify ${dir.src + 'lib.js'} -o ${dir.root + '../js/lib.js'}
+      jq -c '.[]' ${dir.setting + 'lib.json'} | xargs cat > ${dir.root + '../js/lib.js'}
     `]));
 
 
@@ -24,7 +24,7 @@ class Lib extends DefaultRegistry {
      * min
      */
     gulp.task(prefix + 'lib:min', shell.task([`
-      browserify ${dir.src + 'lib.js'} | uglifyjs -o ${dir.root + '../js/lib.min.js'}
+      jq -c '.[]' ${dir.setting + 'lib.json'} | xargs uglifyjs -c -o ${dir.root + '../js/lib.min.js'}
     `]));
 
 
@@ -33,7 +33,7 @@ class Lib extends DefaultRegistry {
      */
     gulp.task(prefix + 'lib:copy', shell.task([`
       cp ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
-      browserify ${dir.src + 'ready.js'} | uglifyjs -o ${dir.root + '../js/ready.min.js'};
+      uglifyjs ${dir.src + 'ready.js'} -o ${dir.root + '../js/ready.min.js'};
       cp ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
     `]));
 
