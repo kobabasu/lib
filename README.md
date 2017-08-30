@@ -55,11 +55,42 @@ Dockerfileを編集しbuildしdocker hubにpush
 1. 問題なければ`.circleci/config.yml`のimagesのバージョンを変更
 1. git pushで確認
 
-## build
+## gulp tasks
+1. `gulp [prefix]:lib`  
+   lib.hjsonに記述されたファイルをconcatするのみ
+1. `gulp [prefix]:lib:min`  
+   lib.hjsonに記述されたファイルをuglifyjsを使い結合、圧縮
+1. `gulp [prefix]:lib:copy`  
+   src/からlib.hjson, ready.js, ready-settings.jsコピーし、uglifyjsでready.min.jsを圧縮・生成
+1. `gulp [prefix]:lib:nodejs`  
+   mochaでのDOM操作を伴わないファイルをtest
+1. `gulp [prefix]:lib:phantomjs`  
+   mocha-phantomjs-coreでDOM操作を伴うファイルをtest
+1. `gulp [prefix]:lib:nodejs:report`  
+   mochaでのDOM操作を伴わないファイルをtestしresults/にレポートを作成
+1. `gulp [prefix]:lib:phantomjs:report`  
+   mocha-phantomjs-coreでDOM操作を伴うファイルをtestしresults/にレポートを作成
+1. `gulp [prefix]:lib:mocha`  
+   lib:nodejs, lib:phantomjsをまとめて実行
+1. `gulp [prefix]:lib:mocha:report`  
+   lib:nodejs:report, lib:phantomjs:reportをまとめて実行
+1. `gulp [prefix]:lib:watch`  
+   src/, modules/, test/内のファイルが変更されたらlib:mochaを実行
+1. `gulp [prefix]:lib:build`  
+   lib:mocha:report, lib:copy, lib, lib:minをまとめて実行
+
+## build files
 gulp lib:buildで一つ上の階層のjsに以下が生成される
 
-1. ready.js
-1. ready.min.js
-1. settings.js
-1. lib.js
-1. lib.min.js
+1. lib.hjson (lib.jsに含めるmoduleを設定)
+1. ready.js (初期ロード時用ライブラリ)
+1. ready.min.js (ready.jsのminify)
+1. ready-settings.js (実際に読み込むmodule、順番、設定用)
+1. lib.js (module郡 単純にconcatしたもの)
+1. lib.min.js (lib.jsのminify)
+
+## edit
+1. package.json, bower.json, gulp/dir.es6を作成
+1. まず`gulp lib:build`もしくは`gulp lib:copy`を実行
+1. 生成した../js/lib.hjsonで必要なmoduleを読み込む
+1. `lib`, `lib:min`でビルド
