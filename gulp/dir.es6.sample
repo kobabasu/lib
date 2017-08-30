@@ -7,6 +7,7 @@
  *
  * settingは使用するmodulesの一覧
  * defaultは./src/だが、../js/などとして使用する
+ * lib.hjsonがある場所を指定
  *
  * nameはtask名の先頭になる
  */
@@ -22,7 +23,7 @@ export const dir = {
   modules: root + 'modules/',
   test:    root + 'test/',
   dist:    root + '../js/',
-  setting: root + './src/',
+  setting: root + '../js/',
   docs:    root + 'docs/lib/',
 
   report:  {

@@ -49,7 +49,7 @@ class Lib extends DefaultRegistry {
 
 
     /*
-     * example:phantomjs
+     * phantomjs
      */
     gulp.task(prefix + 'lib:phantomjs', shell.task([`
       for f in \`ls ${dir.test}*.html\`
@@ -120,9 +120,9 @@ class Lib extends DefaultRegistry {
      */
     gulp.task(prefix + 'lib:build', gulp.series(
         prefix + 'lib:mocha:report',
+        prefix + 'lib:copy',
         prefix + 'lib',
-        prefix + 'lib:min',
-        prefix + 'lib:copy'
+        prefix + 'lib:min'
     ));
   }
 };
