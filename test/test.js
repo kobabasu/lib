@@ -40,9 +40,7 @@ describe('DetectViewport', function() {
         });
       });
     });
-
     return promise;
   });
-
 
 });
