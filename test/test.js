@@ -16,7 +16,7 @@ describe('DetectViewport', function() {
         return page.open(url).then(function(status) {
 
           page.property('viewportSize', {
-            width: 1920,
+            width: 767,
             height: 1080
           });
 
