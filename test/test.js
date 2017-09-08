@@ -38,42 +38,5 @@ describe('DetectViewport', function() {
 
       assert.equal(html, 767);
     });
-
-    /*
-    var promise = phantom.create().then(function(ph) {
-      return ph.createPage().then(function(page) {
-
-        page.property('viewportSize', {
-          width: 1920,
-          height: 1080
-        });
-
-        return page.open(url).then(function(status) {
-
-          page.property('viewportSize', {
-            width: 767,
-            height: 1080
-          });
-
-          return page.evaluate(function() {
-            var module = new DetectViewport({
-              'name': 'sp',
-              'viewport': '(max-width: 767px)'
-            });
-            module.listen();
-
-            return window.innerWidth;
-          }).then(function(html) {
-            page.close().then(function() {
-              ph.exit();
-            });
-
-            assert.equal(html, 767);
-          });
-        });
-      });
-    });
-    return promise;
-    */
   });
 });
