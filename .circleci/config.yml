@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: kobabasu/phantomjs:0.30
+      - image: kobabasu/phantomjs:0.32
       
     working_directory: ~/app/repo
 

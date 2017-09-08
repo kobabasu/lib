@@ -21,6 +21,7 @@
   "dependencies": {},
 
   "devDependencies": {
+    "phantom": "*",
     "mocha": "*",
     "chai": "*",
     "sinon": "*",
