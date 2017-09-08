@@ -40,22 +40,22 @@ class Lib extends DefaultRegistry {
 
 
     /*
-     * nodejs
+     * mocha
      */
     gulp.task(prefix + 'lib:mocha', shell.task([`
       mocha ${dir.test}*.js \
-      -g '^(?!DOM)'
+      -g '^(?!EXCLUDE)'
     `]));
 
 
     /*
-     * nodejs:report
+     * mocha:report
      */
     gulp.task(prefix + 'lib:mocha:report', shell.task([`
       mocha ${dir.test}*.js \
       --reporter mocha-junit-reporter \
       --reporter-options mochaFile=${dir.report} \
-      -g '^(?!DOM)'
+      -g '^(?!EXCLUDE)'
     `]));
 
 
