@@ -54,7 +54,7 @@ class Lib extends DefaultRegistry {
     gulp.task(prefix + 'lib:mocha:report', shell.task([`
       mocha ${dir.test}*.js \
       --reporter mocha-junit-reporter \
-      --reporter-options mochaFile=${dir.report.nodejs} \
+      --reporter-options mochaFile=${dir.report} \
       -g '^(?!DOM)'
     `]));
 
