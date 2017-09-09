@@ -12,8 +12,7 @@ gulp/dir.es6
 src/lib.js
 
 # build files
-test-results-nodejs.xml
-test-results-phantomjs.xml
+test-results.xml
 
 # exclude
 
