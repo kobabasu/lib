@@ -29,7 +29,7 @@
 
     this._class = options['class'] || CLASS_NAME ;
     this._thisyear = options['thisyear'] || _getThisyear();
-    this._prefix = options['prefix'] || null;
+    this._prefix = options['prefix'] || '';
   }
 
   UpdateCopyright.prototype = Object.create(Object.prototype, {
