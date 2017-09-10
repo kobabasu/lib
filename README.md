@@ -62,18 +62,10 @@ Dockerfileを編集しbuildしdocker hubにpush
    lib.hjsonに記述されたファイルをuglifyjsを使い結合、圧縮
 1. `gulp [prefix]:lib:copy`  
    src/からlib.hjson, ready.js, ready-settings.jsコピーし、uglifyjsでready.min.jsを圧縮・生成
-1. `gulp [prefix]:lib:nodejs`  
-   mochaでのDOM操作を伴わないファイルをtest
-1. `gulp [prefix]:lib:phantomjs`  
-   mocha-phantomjs-coreでDOM操作を伴うファイルをtest
-1. `gulp [prefix]:lib:nodejs:report`  
-   mochaでのDOM操作を伴わないファイルをtestしresults/にレポートを作成
-1. `gulp [prefix]:lib:phantomjs:report`  
-   mocha-phantomjs-coreでDOM操作を伴うファイルをtestしresults/にレポートを作成
 1. `gulp [prefix]:lib:mocha`  
-   lib:nodejs, lib:phantomjsをまとめて実行
+   mochaでのDOM操作を伴わないファイルをtest
 1. `gulp [prefix]:lib:mocha:report`  
-   lib:nodejs:report, lib:phantomjs:reportをまとめて実行
+   mochaでのDOM操作を伴わないファイルをtestしresults/にレポートを作成
 1. `gulp [prefix]:lib:watch`  
    src/, modules/, test/内のファイルが変更されたらlib:mochaを実行
 1. `gulp [prefix]:lib:build`  

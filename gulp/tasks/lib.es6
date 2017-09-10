@@ -40,66 +40,23 @@ class Lib extends DefaultRegistry {
 
 
     /*
-     * nodejs
-     */
-    gulp.task(prefix + 'lib:nodejs', shell.task([`
-      mocha ${dir.test}*.js \
-      -g '^(?!DOM)'
-    `]));
-
-
-    /*
-     * phantomjs
-     */
-    gulp.task(prefix + 'lib:phantomjs', shell.task([`
-      for f in \`ls ${dir.test}*.html\`
-      do
-        phantomjs ${dir.node_module_path}node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js $f
-      done
-    `]));
-
-
-    /*
-     * nodejs:report
-     */
-    gulp.task(prefix + 'lib:nodejs:report', shell.task([`
-      mocha ${dir.test}*.js \
-      --reporter mocha-junit-reporter \
-      --reporter-options mochaFile=${dir.report.nodejs} \
-      -g '^(?!DOM)'
-    `]));
-
-
-    /*
-     * phantomjs:report 
-     */
-    gulp.task(prefix + 'lib:phantomjs:report', shell.task([`
-      if [ -f "${dir.report.phantomjs}" ]; then
-        rm ${dir.report.phantomjs};
-      fi
-      for f in \`ls ${dir.test}*.html\`
-      do
-        phantomjs ${dir.node_module_path}node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js $f xunit >> ${dir.report.phantomjs}
-      done
-    `]));
-
-
-    /*
      * mocha
      */
-    gulp.task(prefix + 'lib:mocha', gulp.series(
-        prefix + 'lib:nodejs',
-        prefix + 'lib:phantomjs'
-    ));
+    gulp.task(prefix + 'lib:mocha', shell.task([`
+      mocha ${dir.test}*.js \
+      -g '^(?!EXCLUDE)'
+    `]));
 
 
     /*
      * mocha:report
      */
-    gulp.task(prefix + 'lib:mocha:report', gulp.series(
-        prefix + 'lib:nodejs:report',
-        prefix + 'lib:phantomjs:report'
-    ));
+    gulp.task(prefix + 'lib:mocha:report', shell.task([`
+      mocha ${dir.test}*.js \
+      --reporter mocha-junit-reporter \
+      --reporter-options mochaFile=${dir.report} \
+      -g '^(?!EXCLUDE)'
+    `]));
 
 
     /*

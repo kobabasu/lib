@@ -2,9 +2,6 @@
  * rootはnode_modulesが存在するディレクトリからのレポジトリの
  * ドキュメントルートを指定
  *
- * node_modulesはpackage.jsonからみたnode_modules/の場所を指定
- * (mocha-phantomjs-coreで使用)
- *
  * settingは使用するmodulesの一覧
  * defaultは./src/だが、../js/などとして使用する
  * lib.hjsonがある場所を指定
@@ -13,7 +10,6 @@
  */
 
 const root = './';
-const node_modules = './';
 
 export const dir = {
   name: '',
@@ -25,11 +21,5 @@ export const dir = {
   dist:    root + '../js/',
   setting: root + '../js/',
   docs:    root + 'docs/lib/',
-
-  report:  {
-    nodejs: root + 'results/test-results-nodejs.xml',
-    phantomjs: root + 'results/test-results-phantomjs.xml'
-  },
-
-  node_module_path: node_modules
+  report:  root + 'results/test-results.xml'
 }
