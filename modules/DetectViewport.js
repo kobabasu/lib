@@ -26,22 +26,35 @@
 
     this._name = options['name'] || 'sp';
     this._viewport = options['viewport'] || '(max-width: 767px)';
-
-    this.listen();
+    this.status = this.setStatus();
   }
 
   DetectViewport.prototype = Object.create(Object.prototype, {
     'constructor': { 'value': DetectViewport },
-    'listen': { 'value': DetectViewport_listen }
+    'listen': { 'value': DetectViewport_listen },
+    'setStatus': { 'value': DetectViewport_setStatus },
+    'getStatus': { 'value': DetectViewport_getStatus }
   });
 
   function DetectViewport_listen() {
     var name = this._name;
     global.matchMedia(this._viewport).addListener(function(e) {
-      if (e.matches) {
-        console.log(name);
-      }
+      return e.matches;
     });
+  }
+
+  function DetectViewport_setStatus(status) {
+    if (status) {
+      this.status = true;
+    } else {
+      this.status = global.matchMedia(this._viewport).matches;
+    }
+
+    return this.status;
+  }
+
+  function DetectViewport_getStatus() {
+    return this.status;
   }
 
   return DetectViewport;
