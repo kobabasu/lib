@@ -39,7 +39,7 @@
   function DetectViewport_listen() {
     var name = this._name;
     global.matchMedia(this._viewport).addListener(function(e) {
-      return e.matches;
+      return this.setStatus(e.matches);
     });
   }
 
