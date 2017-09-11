@@ -25,15 +25,16 @@ describe('InnerLink', function() {
 
       // evaluate start
       var change =  _page.evaluate(function() {
+
         new InnerLink();
         var btn = document.querySelector('#button');
         var el = document.querySelector('#bottom');
 
         var ev = document.createEvent('MouseEvents');
-        ev.initEvent('click', false, true);
+        ev.initEvent('click', true, true);
         btn.dispatchEvent(ev);
 
-        return 3;
+        //return window.scrollY;
       }).then(function(res) {
         assert.equal(res, 3);
       });
