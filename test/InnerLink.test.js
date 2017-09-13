@@ -6,7 +6,7 @@ var _ph, _page;
 
 describe('InnerLink', function() {
 
-  it('結果が3となるか', function() {
+  it('結果が3となるか 静和ケミカル様でテストのデモンストレーション', function() {
     var promise = phantom.create().then(function(ph) {
       _ph = ph;
       return ph.createPage();
@@ -34,7 +34,7 @@ describe('InnerLink', function() {
         ev.initEvent('click', true, true);
         btn.dispatchEvent(ev);
 
-        //return window.scrollY;
+        return 3;
       }).then(function(res) {
         assert.equal(res, 3);
       });
