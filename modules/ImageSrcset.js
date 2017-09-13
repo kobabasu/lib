@@ -48,7 +48,7 @@
 
     this._min = this._threshhold.shift();
     this._max = this._threshhold.pop();
-    this._dpx = global.windowDeviceRatio || 1 ;
+    this._dpx = global.devicePixelRatio || 1 ;
     this._width = global.document.body.clientWidth ;
 
     this._els = null;
@@ -209,7 +209,7 @@
   }
 
   function _detectDpx(name) {
-    var dpx = global.windowDeviceRatio;
+    var dpx = global.devicePixelRatio;
     var suffix = '';
 
     if (dpx <= 1) {
