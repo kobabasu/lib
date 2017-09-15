@@ -1,12 +1,12 @@
 var assert = require('chai').assert;
-var phantom = require('phantom');
+var phantom = require('casper');
 var url = './test/InnerLink.test.html';
 var src = './modules/InnerLink.js';
 var _ph, _page;
 
 describe('InnerLink', function() {
 
-  it('結果が3となるか 静和ケミカル様でテストのデモンストレーション', function() {
+  it('結果が3となるか', function() {
     var promise = phantom.create().then(function(ph) {
       _ph = ph;
       return ph.createPage();
