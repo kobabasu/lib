@@ -1,71 +1,50 @@
-var mocha = require('mocha');
 var assert = require('chai').assert;
 var chromelauncher = require('chrome-launcher');
 var CDP = require('chrome-remote-interface');
 var url = 'http://www.seiwa-chemical.net/example/';
 
-/*
-chromelauncher.launch({
-  startingUrl: 'target:blank',
-  chromeFlags: ['--headless', '--disable-gpu']
-}).then(function(chrome) {
-  console.log(`dubugging port running on ${chrome.port}`);
-});
-*/
+async function startHeadlessChrome() {
+  try {
+    return await chromelauncher.launch({
+      port: 9222,
+      startingUrl: 'target:blank',
+      chromeFlags: ['--headless', '--disable-gpu']
+    });
+  } catch(error) {
+    console.error(error);
+  }
+}
 
-CDP(async function (client) {
-  var Page = client.Page;
+describe('chromeのテスト', function() {
+  it('titleを評価できるか', function(done) {
 
-  await Page.enable();
-  await Page.navigate({url: url});
+    startHeadlessChrome().then(function(chrome) {
 
-  await client.DOM.getDocument(function(error, res) {
-    var options = {
-      nodeId: res.root.nodeId,
-      selector: 'title'
-    };
+      CDP(async function (client) {
+        var Page = client.Page;
+        var Runtime = client.Runtime;
+        await Page.enable();
+        await Runtime.enable();
+        await Page.navigate({url: url});
 
-    client.DOM.querySelector(options, function(error, res) {
-      //console.log(error);
-      options = {
-        nodeId: res.nodeId
-      };
-      client.DOM.getOuterHTML(options, function(error, res) {
-        return res;
+        await Page.loadEventFired();
+
+        var exp = `document.querySelector('title').innerHTML`;
+        var title = await Runtime.evaluate({
+          expression: exp 
+        });
+
+        try {
+          assert.equal(title.result.value, 'postcss');
+        } catch(error) {
+          return done(error);
+        } finally {
+          client.close();
+          chrome.kill();
+        }
+
+        done();
       });
     });
   });
-
-  await function(res) {
-    console.log(res);
-  };
 });
-
-/*
-describe('chromeのテスト', function() {
-  it('titleタグをチェック', function() {
-
-    CDP(function(client) {
-      client.Page
-        .enable()
-        .then(function() {
-          return client.Page.navigate({ url: url });
-        })
-        .then(function() {
-          client.DOM.getDocument(function(error, params) {
-            if (error) {
-              console.error(params);
-              return;
-            };
-
-            var title = client.DOM.querySelector('title');
-            console.log(title);
-          });
-        })
-    }).on('error', function(err) {
-      console.error(err);
-    });
-
-  });
-});
-*/
