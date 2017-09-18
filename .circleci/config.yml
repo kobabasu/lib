@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: kobabasu/alpine-chrome:0.28
+      - image: kobabasu/alpine-chrome:0.31
       
     working_directory: ~/app/repo
 
