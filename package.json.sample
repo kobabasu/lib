@@ -38,7 +38,7 @@
     "global": "npm install -g chromium jq hjson uglify-js mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
     "preinstall": "mkdir -p ../js; cp src/lib.js.sample src/lib.js",
     "postinstall": "gulp lib:build",
-    "test": "mocha ./test/*.js --reporter mocha-junit-reporter --reporter-options mochaFile=./results/test-results.xml"
+    "test": "gulp lib:mocha:report"
   },
 
   "preferGlobal": true,
