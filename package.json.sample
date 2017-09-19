@@ -21,11 +21,13 @@
   "dependencies": {},
 
   "devDependencies": {
-    "phantom": "*",
     "mocha": "*",
     "chai": "*",
     "sinon": "*",
     "mocha-junit-reporter": "*",
+
+    "chrome-launcher": "*",
+    "chrome-remote-interface": "*",
 
     "babel-core": "*",
     "babel-preset-es2015": "*",
@@ -33,7 +35,7 @@
   },
 
   "scripts": {
-    "global": "npm install -g phantom jq hjson uglify-js mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
+    "global": "npm install -g chromium jq hjson uglify-js mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
     "preinstall": "mkdir -p ../js; cp src/lib.js.sample src/lib.js",
     "postinstall": "gulp lib:build",
     "test": "gulp lib:mocha:report"

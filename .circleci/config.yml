@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: kobabasu/phantomjs:0.32
+      - image: kobabasu/alpine-chrome:0.35
       
     working_directory: ~/app/repo
 
