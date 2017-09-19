@@ -8,7 +8,7 @@ async function startHeadlessChrome() {
     return await chromelauncher.launch({
       port: 9222,
       startingUrl: 'target:blank',
-      chromeFlags: ['--headless', '--disable-gpu']
+      chromeFlags: ['--headless', '--disable-gpu', '--no-sandbox']
     });
   } catch(error) {
     console.error(error);
