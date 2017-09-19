@@ -44,7 +44,8 @@ class Lib extends DefaultRegistry {
      */
     gulp.task(prefix + 'lib:mocha', shell.task([`
       mocha ${dir.test}*.js \
-      -g '^(?!EXCLUDE)'
+      -g '^(?!EXCLUDE)' \
+      --timeout 10000
     `]));
 
 
@@ -55,7 +56,8 @@ class Lib extends DefaultRegistry {
       mocha ${dir.test}*.js \
       --reporter mocha-junit-reporter \
       --reporter-options mochaFile=${dir.report} \
-      -g '^(?!EXCLUDE)'
+      -g '^(?!EXCLUDE)' \
+      --timeout 10000
     `]));
 
 
