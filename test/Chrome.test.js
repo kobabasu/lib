@@ -1,7 +1,9 @@
+var fs = require('fs');
 var assert = require('chai').assert;
 var chromelauncher = require('chrome-launcher');
 var CDP = require('chrome-remote-interface');
-var url = 'http://www.seiwa-chemical.net/example/';
+
+var url = './test/Chrome.test.html';
 
 async function startHeadlessChrome() {
   try {
@@ -15,19 +17,26 @@ async function startHeadlessChrome() {
   }
 }
 
-describe('chromeのテスト', function() {
+describe('chrome-headlessのテスト', function() {
   it('titleを評価できるか', function(done) {
 
     startHeadlessChrome().then(function(chrome) {
 
       CDP(async function (client) {
+        var html = await fs.readFileSync(url, 'utf-8');
+
         var Page = client.Page;
         var Runtime = client.Runtime;
         await Page.enable();
         await Runtime.enable();
-        await Page.navigate({url: url});
 
-        await Page.loadEventFired();
+        var blank = await Page.navigate({ url: 'target:blank' });
+        await Page.setDocumentContent({
+          frameId: blank.frameId,
+          html: html
+        });
+
+        // await Page.loadEventFired();
 
         var exp = `document.querySelector('title').innerHTML`;
         var title = await Runtime.evaluate({
