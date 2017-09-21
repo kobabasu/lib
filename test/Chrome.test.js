@@ -4,7 +4,7 @@ var chromelauncher = require('chrome-launcher');
 var CDP = require('chrome-remote-interface');
 
 var html = './test/Chrome.test.html';
-var js = './modules/UpdateCopyright.js';
+// var js = './modules/UpdateCopyright.js';
 
 function fetch(filename) {
   return fs.readFileSync(filename, 'utf-8');
@@ -39,9 +39,9 @@ describe('chrome-headlessのテスト', function() {
           html: fetch(html)
         });
 
-        await Page.addScriptToEvaluateOnLoad({
-          scriptSource: js
-        });
+        // await Page.addScriptToEvaluateOnLoad({
+        //   scriptSource: js
+        // });
 
         // await Page.loadEventFired();
 
