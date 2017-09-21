@@ -51,7 +51,7 @@ describe('chrome-headlessのテスト', function() {
         });
 
         try {
-          assert.equal(title.result.value, 'postcss');
+          assert.equal(title.result.value, 'sample');
         } catch(error) {
           return done(error);
         } finally {
