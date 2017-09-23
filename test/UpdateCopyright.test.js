@@ -23,8 +23,8 @@ async function startHeadlessChrome() {
   }
 }
 
-describe('chrome-headlessのテスト', function() {
-  it('titleを評価できるか', function(done) {
+describe('UpdateCopyright', function() {
+  it('2017と変更されているか', function(done) {
     startHeadlessChrome().then(function(chrome) {
 
       CDP(async function (client) {

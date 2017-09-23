@@ -22,7 +22,7 @@ async function startHeadlessChrome() {
   }
 }
 
-describe('chrome-headlessのテスト', function() {
+describe('chrome-headless-sample', function() {
   it('titleを評価できるか', function(done) {
 
     startHeadlessChrome().then(function(chrome) {
