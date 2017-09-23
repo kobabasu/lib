@@ -3,7 +3,12 @@ var assert = require('chai').assert;
 var chromelauncher = require('chrome-launcher');
 var CDP = require('chrome-remote-interface');
 
-var url = './test/Chrome.test.html';
+var html = './test/Chrome.test.html';
+// var js = './modules/UpdateCopyright.js';
+
+function fetch(filename) {
+  return fs.readFileSync(filename, 'utf-8');
+}
 
 async function startHeadlessChrome() {
   try {
@@ -23,8 +28,6 @@ describe('chrome-headlessのテスト', function() {
     startHeadlessChrome().then(function(chrome) {
 
       CDP(async function (client) {
-        var html = await fs.readFileSync(url, 'utf-8');
-
         var Page = client.Page;
         var Runtime = client.Runtime;
         await Page.enable();
@@ -33,8 +36,12 @@ describe('chrome-headlessのテスト', function() {
         var blank = await Page.navigate({ url: 'target:blank' });
         await Page.setDocumentContent({
           frameId: blank.frameId,
-          html: html
+          html: fetch(html)
         });
+
+        // await Page.addScriptToEvaluateOnLoad({
+        //   scriptSource: js
+        // });
 
         // await Page.loadEventFired();
 
@@ -44,7 +51,7 @@ describe('chrome-headlessのテスト', function() {
         });
 
         try {
-          assert.equal(title.result.value, 'postcss');
+          assert.equal(title.result.value, 'sample');
         } catch(error) {
           return done(error);
         } finally {
