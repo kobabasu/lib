@@ -4,8 +4,8 @@ import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
 
 const URL = 'about:blank';
-const HTML = './test/UpdateCopyright.test.html';
-const JS = './modules/UpdateCopyright.js';
+const HTML = './test/Example.test.html';
+// const JS = './modules/UpdateCopyright.js';
 
 const fetch = (filename) => {
   return fs.readFileSync(filename, 'utf-8');
@@ -37,9 +37,9 @@ describe('chrome-headless-sample', () => {
 
       Console.messageAdded((msg) => console.log(msg));
 
-      await Page.addScriptToEvaluateOnLoad({
-        scriptSource: fetch(JS)
-      });
+      // await Page.addScriptToEvaluateOnLoad({
+      //   scriptSource: fetch(JS)
+      // });
 
       const frame = await Page.navigate({ url: URL });
       Page.loadEventFired();
@@ -50,9 +50,7 @@ describe('chrome-headless-sample', () => {
       });
 
       const exp = `(() => {
-        const module = new UpdateCopyright();
-        module.init();
-        const el = document.body.querySelector('.copyright');
+        const el = document.body.querySelector('title');
         // console.log(el);
         return el.innerHTML;
       })()`;
@@ -60,7 +58,7 @@ describe('chrome-headless-sample', () => {
       // console.log(res);
 
       try {
-        assert.equal(res.result.value, '2017');
+        assert.equal(res.result.value, 'example');
       } catch(error) {
         return done(error);
       } finally {
