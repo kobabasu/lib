@@ -10,7 +10,7 @@ const fetch = (filename) => {
   return fs.readFileSync(filename, 'utf-8');
 }
 
-const launchBrowser = async () => {
+const launchChrome = async () => {
   try {
     return await launch({
       port: 9222,
@@ -25,7 +25,7 @@ const launchBrowser = async () => {
 describe('chrome-headless-sample', () => {
   it('titleを評価できるか', (done) => {
 
-    launchBrowser().then(async (chrome) => {
+    launchChrome().then(async (chrome) => {
 
       const client = await CDP({ port: chrome.port });
       const { Page, Runtime, Console } = client;
