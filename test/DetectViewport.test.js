@@ -64,8 +64,6 @@ describe('DetectViewport', () => {
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
-
-      const thisyear = new Date().getFullYear();
       try {
         assert.isTrue(res.result.value);
       } catch(error) {
@@ -117,8 +115,6 @@ describe('DetectViewport', () => {
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
-
-      const thisyear = new Date().getFullYear();
       try {
         assert.isTrue(res.result.value);
       } catch(error) {
@@ -170,8 +166,6 @@ describe('DetectViewport', () => {
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
-
-      const thisyear = new Date().getFullYear();
       try {
         assert.isFalse(res.result.value);
       } catch(error) {
