@@ -52,7 +52,7 @@ describe('UpdateCopyright', () => {
       const exp = `(() => {
         const module = new UpdateCopyright();
         module.init();
-        const el = document.body.querySelector('.copyright');
+        const el = document.querySelector('.copyright');
         // console.log(el);
         return el.innerHTML;
       })()`;

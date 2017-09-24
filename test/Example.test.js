@@ -50,7 +50,7 @@ describe('chrome-headless-sample', () => {
       });
 
       const exp = `(() => {
-        const el = document.body.querySelector('title');
+        const el = document.querySelector('title');
         // console.log(el);
         return el.innerHTML;
       })()`;
