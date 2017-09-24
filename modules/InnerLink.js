@@ -30,6 +30,7 @@
   function InnerLink(options) {
 
     options = options || {} ;
+    this._fixed = options['fixed'] || FIXED ;
 
     this._links = global.document.documentElement
       .querySelectorAll('a[href^="#"]');
