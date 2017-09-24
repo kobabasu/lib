@@ -26,15 +26,14 @@ const launchChrome = async () => {
 
 describe('DetectViewport', () => {
 
-  it('クラスがなくともエラーとならないか', (done) => {
+  it('ブラウザ幅766pxでtrueとなるか', (done) => {
 
     launchChrome().then(async (chrome) => {
       const client = await CDP({ port: chrome.port });
-      const { Page, Runtime, DOM, Console } = client;
+      const { Page, Runtime, Emulation, Console } = client;
       await Promise.all([
         Page.enable(),
         Runtime.enable(),
-        DOM.enable(),
         Console.enable()
       ]);
 
@@ -52,15 +51,129 @@ describe('DetectViewport', () => {
         html: fetch(HTML)
       });
 
+      await Emulation.setVisibleSize({
+        width: 766,
+        height: 1080
+      });
+
       const exp = `(() => {
-        return 'yyy';
+        const module = new DetectViewport({
+          viewport: '(max-width: 767px)'
+        });
+        return module.getStatus();
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
 
       const thisyear = new Date().getFullYear();
       try {
-        assert.equal(res.result.value, 'yyy');
+        assert.isTrue(res.result.value);
+      } catch(error) {
+        return done(error);
+      } finally {
+        client.close();
+        chrome.kill();
+      }
+
+      done();
+    });
+  });
+
+  it('ブラウザ幅767pxでtrueとなるか', (done) => {
+
+    launchChrome().then(async (chrome) => {
+      const client = await CDP({ port: chrome.port });
+      const { Page, Runtime, Emulation, Console } = client;
+      await Promise.all([
+        Page.enable(),
+        Runtime.enable(),
+        Console.enable()
+      ]);
+
+      Console.messageAdded((msg) => console.log(msg));
+
+      await Page.addScriptToEvaluateOnLoad({
+        scriptSource: fetch(JS)
+      });
+
+      const frame = await Page.navigate({ url: URL });
+      Page.loadEventFired();
+
+      await Page.setDocumentContent({
+        frameId: frame.frameId,
+        html: fetch(HTML)
+      });
+
+      await Emulation.setVisibleSize({
+        width: 767,
+        height: 1080
+      });
+
+      const exp = `(() => {
+        const module = new DetectViewport({
+          viewport: '(max-width: 767px)'
+        });
+        return module.getStatus();
+      })()`;
+      const res = await Runtime.evaluate({ expression: exp });
+      // console.log(res);
+
+      const thisyear = new Date().getFullYear();
+      try {
+        assert.isTrue(res.result.value);
+      } catch(error) {
+        return done(error);
+      } finally {
+        client.close();
+        chrome.kill();
+      }
+
+      done();
+    });
+  });
+
+  it('ブラウザ幅768pxでfalseとなるか', (done) => {
+
+    launchChrome().then(async (chrome) => {
+      const client = await CDP({ port: chrome.port });
+      const { Page, Runtime, Emulation, Console } = client;
+      await Promise.all([
+        Page.enable(),
+        Runtime.enable(),
+        Console.enable()
+      ]);
+
+      Console.messageAdded((msg) => console.log(msg));
+
+      await Page.addScriptToEvaluateOnLoad({
+        scriptSource: fetch(JS)
+      });
+
+      const frame = await Page.navigate({ url: URL });
+      Page.loadEventFired();
+
+      await Page.setDocumentContent({
+        frameId: frame.frameId,
+        html: fetch(HTML)
+      });
+
+      await Emulation.setVisibleSize({
+        width: 768,
+        height: 1080
+      });
+
+      const exp = `(() => {
+        const module = new DetectViewport({
+          viewport: '(max-width: 767px)'
+        });
+        return module.getStatus();
+      })()`;
+      const res = await Runtime.evaluate({ expression: exp });
+      // console.log(res);
+
+      const thisyear = new Date().getFullYear();
+      try {
+        assert.isFalse(res.result.value);
       } catch(error) {
         return done(error);
       } finally {
