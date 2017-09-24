@@ -78,7 +78,7 @@ gulp lib:buildで一つ上の階層のjsに以下が生成される
 1. ready.js (初期ロード時用ライブラリ)
 1. ready.min.js (ready.jsのminify)
 1. ready-settings.js (実際に読み込むmodule、順番、設定用)
-1. lib.js (module郡 単純にconcatしたもの)
+1. lib.js (使用moduleを単純にconcatしたもの)
 1. lib.min.js (lib.jsのminify)
 
 ## edit
@@ -86,3 +86,6 @@ gulp lib:buildで一つ上の階層のjsに以下が生成される
 1. npm installでlib:buildが実行され../js/にコピーされる
 1. 生成した../js/lib.hjsonで必要なmoduleを読み込む
 1. `lib`, `lib:min`でビルド
+
+## todo
+- [ ] testファイル内のaddScriptToEvaluateOnLoadをchromeのstableでaddScriptToEvaluateOnNewDocumentが使用するようになったら変更する
