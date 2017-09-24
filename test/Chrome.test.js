@@ -42,12 +42,12 @@ describe('chrome-headless-sample', () => {
         frameId: frame.frameId,
         html: fetch(HTML)
       });
+      Page.loadEventFired();
 
       // await Page.addScriptToEvaluateOnLoad({
       //   scriptSource: JS
       // });
 
-      // await Page.loadEventFired();
 
       var exp = `document.querySelector('title').innerHTML`;
       var title = await Runtime.evaluate({
