@@ -35,7 +35,7 @@ describe('chrome-headless-sample', () => {
         Console.enable()
       ]);
 
-      Console.messageAdded((msg) => cosole.log(msg));
+      Console.messageAdded((msg) => console.log(msg));
 
       await Page.addScriptToEvaluateOnLoad({
         scriptSource: JS
