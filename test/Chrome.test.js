@@ -37,9 +37,9 @@ describe('chrome-headless-sample', () => {
 
       Console.messageAdded((msg) => cosole.log(msg));
 
-      const blank = await Page.navigate({ url: URL });
+      const frame = await Page.navigate({ url: URL });
       await Page.setDocumentContent({
-        frameId: blank.frameId,
+        frameId: frame.frameId,
         html: fetch(HTML)
       });
 
