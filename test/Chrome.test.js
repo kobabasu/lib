@@ -3,6 +3,7 @@ import { assert } from 'chai'
 import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
 
+const URL = 'about:blank';
 const HTML = './test/Chrome.test.html';
 // const JS = './modules/UpdateCopyright.js';
 
@@ -36,7 +37,7 @@ describe('chrome-headless-sample', () => {
 
       Console.messageAdded((msg) => cosole.log(msg));
 
-      const blank = await Page.navigate({ url: 'target:blank' });
+      const blank = await Page.navigate({ url: URL });
       await Page.setDocumentContent({
         frameId: blank.frameId,
         html: fetch(HTML)
