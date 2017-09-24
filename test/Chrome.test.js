@@ -37,16 +37,16 @@ describe('chrome-headless-sample', () => {
 
       Console.messageAdded((msg) => cosole.log(msg));
 
+      await Page.addScriptToEvaluateOnLoad({
+        scriptSource: JS
+      });
+
       const frame = await Page.navigate({ url: URL });
       await Page.setDocumentContent({
         frameId: frame.frameId,
         html: fetch(HTML)
       });
       Page.loadEventFired();
-
-      // await Page.addScriptToEvaluateOnLoad({
-      //   scriptSource: JS
-      // });
 
 
       var exp = `document.querySelector('title').innerHTML`;
