@@ -42,11 +42,12 @@ describe('chrome-headless-sample', () => {
       });
 
       const frame = await Page.navigate({ url: URL });
+      Page.loadEventFired();
+
       await Page.setDocumentContent({
         frameId: frame.frameId,
         html: fetch(HTML)
       });
-      Page.loadEventFired();
 
       const exp = `(() => {
         const module = new UpdateCopyright();
