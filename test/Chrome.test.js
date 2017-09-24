@@ -29,9 +29,11 @@ describe('chrome-headless-sample', () => {
 
       const client = await CDP({ port: chrome.port });
       const { Page, Runtime, Console } = client;
-      await Page.enable();
-      await Runtime.enable();
-      await Console.enable();
+      await Promise.all([
+        Page.enable(),
+        Runtime.enable(),
+        Console.enable()
+      ]);
 
       const blank = await Page.navigate({ url: 'target:blank' });
       await Page.setDocumentContent({
