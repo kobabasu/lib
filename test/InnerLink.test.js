@@ -26,11 +26,11 @@ const launchChrome = async () => {
 
 describe('InnerLink', () => {
 
-  it('クラスがなくともエラーとならないか', (done) => {
+  it('リンク先までスクロールするか', (done) => {
 
     launchChrome().then(async (chrome) => {
       const client = await CDP({ port: chrome.port });
-      const { Page, Runtime, DOM, Console } = client;
+      const { Page, Runtime, DOM, Emulation, Console } = client;
       await Promise.all([
         Page.enable(),
         Runtime.enable(),
