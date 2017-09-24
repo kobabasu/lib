@@ -38,7 +38,7 @@ describe('chrome-headless-sample', () => {
       Console.messageAdded((msg) => console.log(msg));
 
       await Page.addScriptToEvaluateOnLoad({
-        scriptSource: JS
+        scriptSource: fetch(JS)
       });
 
       const frame = await Page.navigate({ url: URL });
