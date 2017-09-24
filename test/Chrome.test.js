@@ -5,7 +5,7 @@ import CDP from 'chrome-remote-interface'
 
 const URL = 'about:blank';
 const HTML = './test/Chrome.test.html';
-// const JS = './modules/UpdateCopyright.js';
+const JS = './modules/UpdateCopyright.js';
 
 const fetch = (filename) => {
   return fs.readFileSync(filename, 'utf-8');
@@ -48,14 +48,18 @@ describe('chrome-headless-sample', () => {
       });
       Page.loadEventFired();
 
+      const exp = `(() => {
+        const module = new UpdateCopyright();
+        module.init();
+        const el = document.body.querySelector('.copyright');
+        // console.log(el);
+        return el.innerHTML;
+      })()`;
 
-      var exp = `document.querySelector('title').innerHTML`;
-      var title = await Runtime.evaluate({
-        expression: exp 
-      });
+      var res = await Runtime.evaluate({ expression: exp });
 
       try {
-        assert.equal(title.result.value, 'sample');
+        assert.equal(res.result.value, '2017');
       } catch(error) {
         return done(error);
       } finally {
