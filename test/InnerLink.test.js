@@ -47,78 +47,52 @@ describe('InnerLink', () => {
       const frame = await Page.navigate({ url: URL });
       Page.loadEventFired();
 
-      await Page.setDocumentContent({
-        frameId: frame.frameId,
-        html: fetch(HTML)
+      Emulation.setDeviceMetricsOverride({
+        width: 0,
+        height: 1,
+        deviceScaleFactor: 0,
+        mobile: false,
+        screenHeight: 1
       });
-
-      const body = await DOM.getDocument();
-      const el = await DOM.querySelector({
-        nodeId: body.root.nodeId,
-        selector: '.copyright'
-      });
-      await DOM.removeNode({ nodeId: el.nodeId });
-
-      const exp = `(() => {
-        const module = new UpdateCopyright();
-        return module.init();
-      })()`;
-      const res = await Runtime.evaluate({ expression: exp });
-      // console.log(res);
-
-      const thisyear = new Date().getFullYear();
-      try {
-        assert.notEqual(res.result.subtype, 'errors');
-      } catch(error) {
-        return done(error);
-      } finally {
-        client.close();
-        chrome.kill();
-      }
-
-      done();
-    });
-  });
-
-
-  it('結果が今年となるか', (done) => {
-
-    launchChrome().then(async (chrome) => {
-      const client = await CDP({ port: chrome.port });
-      const { Page, Runtime, Console } = client;
-      await Promise.all([
-        Page.enable(),
-        Runtime.enable(),
-        Console.enable()
-      ]);
-
-      Console.messageAdded((msg) => console.log(msg));
-
-      await Page.addScriptToEvaluateOnLoad({
-        scriptSource: fetch(JS)
-      });
-
-      const frame = await Page.navigate({ url: URL });
-      Page.loadEventFired();
 
       await Page.setDocumentContent({
         frameId: frame.frameId,
         html: fetch(HTML)
       });
 
-      const exp = `(() => {
-        const module = new UpdateCopyright();
-        module.init();
-        const el = document.querySelector('.copyright');
-        // console.log(el);
-        return el.innerHTML;
-      })()`;
-      const res = await Runtime.evaluate({ expression: exp });
-      // console.log(res);
+      let exp = `(() => {
+        var el = document.querySelector('footer');
+        return el.offsetTop;
+      })();`;
+      const height = await Runtime.evaluate({
+        expression: exp
+      });
+      // console.log(height);
 
-      const thisyear = new Date().getFullYear();
+      const innerLinkFixed = -100;
+      exp = `(() => {
+        return new Promise(function(resolve, reject) {
+          new InnerLink({ fixed: ${innerLinkFixed} });
+          var btn = document.querySelector('#button');
+          var el = document.querySelector('footer');
+
+          var ev = document.createEvent('MouseEvents');
+          ev.initEvent('click', true, true);
+          btn.dispatchEvent(ev);
+
+          setTimeout(function() {
+            resolve(window.pageYOffset);
+          }, 1000);
+        });
+      })()`;
+      const res = await Runtime.evaluate({
+        expression: exp,
+        awaitPromise: true
+      });
+      // console.log(res);
       try {
-        assert.equal(res.result.value, thisyear);
+        const ans = height.result.value + innerLinkFixed;
+        assert.equal(res.result.value, ans);
       } catch(error) {
         return done(error);
       } finally {
