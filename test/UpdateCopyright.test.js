@@ -23,7 +23,7 @@ const launchChrome = async () => {
 }
 
 describe('UpdateCopyright', () => {
-  it('結果が2017となるか', (done) => {
+  it('結果が今年となるか', (done) => {
 
     launchChrome().then(async (chrome) => {
       const client = await CDP({ port: chrome.port });
@@ -58,8 +58,9 @@ describe('UpdateCopyright', () => {
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
 
+      const thisyear = new Date().getFullYear();
       try {
-        assert.equal(res.result.value, '2017');
+        assert.equal(res.result.value, thisyear);
       } catch(error) {
         return done(error);
       } finally {
