@@ -26,7 +26,6 @@ describe('chrome-headless-sample', () => {
   it('titleを評価できるか', (done) => {
 
     launchChrome().then(async (chrome) => {
-
       const client = await CDP({ port: chrome.port });
       const { Page, Runtime, Console } = client;
       await Promise.all([
@@ -34,6 +33,8 @@ describe('chrome-headless-sample', () => {
         Runtime.enable(),
         Console.enable()
       ]);
+
+      Console.messageAdded((msg) => cosole.log(msg));
 
       const blank = await Page.navigate({ url: 'target:blank' });
       await Page.setDocumentContent({
