@@ -28,42 +28,42 @@ describe('UpdateCopyright', function() {
     startHeadlessChrome().then(function(chrome) {
 
       CDP(async function (client) {
-          var Page = client.Page;
-          var Runtime = client.Runtime;
-          var Console = client.Console;
-          await Page.enable();
-          await Runtime.enable();
-          await Console.enable();
+        var Page = client.Page;
+        var Runtime = client.Runtime;
+        var Console = client.Console;
+        await Page.enable();
+        await Runtime.enable();
+        await Console.enable();
 
-          Console.messageAdded(function(title) {
-            console.log(title);
-          });
+        Console.messageAdded(function(title) {
+          console.log(title);
+        });
 
-          await Page.addScriptToEvaluateOnLoad({
-            scriptSource: fetch(js)
-          });
-          var blank = await Page.navigate({ url: 'about:blank' });
+        await Page.addScriptToEvaluateOnLoad({
+          scriptSource: fetch(js)
+        });
+        var blank = await Page.navigate({ url: 'about:blank' });
 
-          Page.loadEventFired();
+        Page.loadEventFired();
 
-          await Page.setDocumentContent({
-            frameId: blank.frameId,
-            html: fetch(html)
-          });
+        await Page.setDocumentContent({
+          frameId: blank.frameId,
+          html: fetch(html)
+        });
 
-          var exp = `(function() {
-            var module = new UpdateCopyright();
-            module.init();
-            var el = document.body.querySelector('.copyright');
-            // console.log(el);
-            return el.innerHTML;
-          })()`;
+        var exp = `(function() {
+          var module = new UpdateCopyright();
+          module.init();
+          var el = document.body.querySelector('.copyright');
+          // console.log(el);
+          return el.innerHTML;
+        })()`;
 
-          var title = await Runtime.evaluate({
-            expression: exp
-          });
+        var title = await Runtime.evaluate({
+          expression: exp
+        });
 
-          // console.log(title);
+        // console.log(title);
         try {
           assert.equal(title.result.value, '2017');
         } catch(error) {
