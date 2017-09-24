@@ -4,7 +4,7 @@ import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
 
 const URL = 'about:blank';
-const HTML = './test/Chrome.test.html';
+const HTML = './test/UpdateCopyright.test.html';
 const JS = './modules/UpdateCopyright.js';
 
 const fetch = (filename) => {
