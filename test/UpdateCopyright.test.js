@@ -14,7 +14,6 @@ const fetch = (filename) => {
 const launchChrome = async () => {
   try {
     return await launch({
-      port: 9222,
       startingUrl: 'about:blank',
       chromeFlags: ['--headless', '--disable-gpu', '--no-sandbox']
     });
