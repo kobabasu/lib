@@ -56,8 +56,8 @@ describe('chrome-headless-sample', () => {
         // console.log(el);
         return el.innerHTML;
       })()`;
-
-      var res = await Runtime.evaluate({ expression: exp });
+      const res = await Runtime.evaluate({ expression: exp });
+      // console.log(res);
 
       try {
         assert.equal(res.result.value, '2017');
