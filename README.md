@@ -45,13 +45,13 @@ Dockerfileを編集しbuildしdocker hubにpush
 1. config.rb, user-dataをコピー
 1. config.rbを編集
 1. `shared_folder`でレポジトリのルートを共有
-1. `docker build -t kobabasu/phantomjs:0.27` /home/core/share`
+1. `docker build -t kobabasu/alpine-chrome:0.xx` /home/core/share`
 1. `docker login`
-1. `docker push kobabasu/phantomjs:0.27`
+1. `docker push kobabasu/alpine-chrome:0.xx`
 1. docker-composeをインストール
 1. `docker-compose up`
 1. `docker-compose start`
-1. `docker exec phantomjs gulp mocha:report`や`vagrant ssh -c 'docker exec phantomjs gulp mocha:report'`で確認
+1. `docker exec chrome gulp mocha:report`や`vagrant ssh -c 'docker exec chrome gulp mocha:report'`で確認
 1. 問題なければ`.circleci/config.yml`のimagesのバージョンを変更
 1. git pushで確認
 
