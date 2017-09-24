@@ -4,8 +4,8 @@ import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
 
 const URL = 'about:blank';
-const HTML = './test/UpdateCopyright.test.html';
-const JS = './modules/UpdateCopyright.js';
+const HTML = './test/Example.test.html';
+// const JS = './modules/UpdateCopyright.js';
 
 const fetch = (filename) => {
   return fs.readFileSync(filename, 'utf-8');
@@ -22,8 +22,8 @@ const launchChrome = async () => {
   }
 }
 
-describe('UpdateCopyright', () => {
-  it('結果が今年となるか', (done) => {
+describe('chrome-headless-sample', () => {
+  it('titleを評価できるか', (done) => {
 
     launchChrome().then(async (chrome) => {
       const client = await CDP({ port: chrome.port });
@@ -36,9 +36,9 @@ describe('UpdateCopyright', () => {
 
       Console.messageAdded((msg) => console.log(msg));
 
-      await Page.addScriptToEvaluateOnLoad({
-        scriptSource: fetch(JS)
-      });
+      // await Page.addScriptToEvaluateOnLoad({
+      //   scriptSource: fetch(JS)
+      // });
 
       const frame = await Page.navigate({ url: URL });
       Page.loadEventFired();
@@ -49,18 +49,15 @@ describe('UpdateCopyright', () => {
       });
 
       const exp = `(() => {
-        const module = new UpdateCopyright();
-        module.init();
-        const el = document.querySelector('.copyright');
+        const el = document.querySelector('title');
         // console.log(el);
         return el.innerHTML;
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
 
-      const thisyear = new Date().getFullYear();
       try {
-        assert.equal(res.result.value, thisyear);
+        assert.equal(res.result.value, 'example');
       } catch(error) {
         return done(error);
       } finally {
