@@ -14,7 +14,7 @@ const launchChrome = async () => {
   try {
     return await launch({
       port: 9222,
-      startingUrl: 'target:blank',
+      startingUrl: 'about:blank',
       chromeFlags: ['--headless', '--disable-gpu', '--no-sandbox']
     });
   } catch(error) {
