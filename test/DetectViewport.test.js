@@ -52,23 +52,15 @@ describe('DetectViewport', () => {
         html: fetch(HTML)
       });
 
-      const body = await DOM.getDocument();
-      const el = await DOM.querySelector({
-        nodeId: body.root.nodeId,
-        selector: '.copyright'
-      });
-      await DOM.removeNode({ nodeId: el.nodeId });
-
       const exp = `(() => {
-        const module = new UpdateCopyright();
-        return module.init();
+        return 'yyy';
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
 
       const thisyear = new Date().getFullYear();
       try {
-        assert.notEqual(res.result.subtype, 'errors');
+        assert.equal(res.result.value, 'yyy');
       } catch(error) {
         return done(error);
       } finally {
