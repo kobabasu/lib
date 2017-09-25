@@ -30,7 +30,7 @@ describe('InnerLink', () => {
 
     launchChrome().then(async (chrome) => {
       const client = await CDP({ port: chrome.port });
-      const { Page, Runtime, DOM, Emulation, Console } = client;
+      const { Page, Runtime, DOM, Emulation, Console, Input } = client;
       await Promise.all([
         Page.enable(),
         Runtime.enable(),
@@ -61,6 +61,8 @@ describe('InnerLink', () => {
         html: fetch(HTML)
       });
 
+      await Input.synthesizeScrollGesture({ x: 0, y: 0 });
+
       // スクロールされるべき量を取得 cssのtopと同じ値
       let exp = `(() => {
         var el = document.querySelector('footer');
@@ -75,7 +77,6 @@ describe('InnerLink', () => {
       const innerLinkFixed = -100;
       exp = `(() => {
         return new Promise((resolve, reject) => {
-          window.pageYOffset = 0;
           new InnerLink({ fixed: ${innerLinkFixed} });
           var btn = document.querySelector('#button');
           var el = document.querySelector('footer');
