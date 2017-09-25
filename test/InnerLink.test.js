@@ -71,7 +71,7 @@ describe('InnerLink', () => {
 
       const innerLinkFixed = -100;
       exp = `(() => {
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
           new InnerLink({ fixed: ${innerLinkFixed} });
           var btn = document.querySelector('#button');
           var el = document.querySelector('footer');
@@ -80,7 +80,7 @@ describe('InnerLink', () => {
           ev.initEvent('click', true, true);
           btn.dispatchEvent(ev);
 
-          setTimeout(function() {
+          setTimeout(() => {
             resolve(window.pageYOffset);
           }, 1000);
         });
