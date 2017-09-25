@@ -85,7 +85,7 @@ describe('InnerLink', () => {
 
           setTimeout(() => {
             resolve(window.pageYOffset);
-          }, 1000);
+          }, 2000);
         });
       })()`;
       const res = await Runtime.evaluate({
