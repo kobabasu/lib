@@ -30,7 +30,7 @@ describe('InnerLink', () => {
 
     launchChrome().then(async (chrome) => {
       const client = await CDP({ port: chrome.port });
-      const { Page, Runtime, DOM, Emulation, Console, Input } = client;
+      const { Page, Runtime, DOM, Emulation, Console } = client;
       await Promise.all([
         Page.enable(),
         Runtime.enable(),
@@ -53,15 +53,15 @@ describe('InnerLink', () => {
         height: 1,
         deviceScaleFactor: 0,
         mobile: false,
-        screenHeight: 1
+        screenHeight: 1,
+        positionX: 0,
+        positionY: 0
       });
 
       await Page.setDocumentContent({
         frameId: frame.frameId,
         html: fetch(HTML)
       });
-
-      await Input.synthesizeScrollGesture({ x: 0, y: 0 });
 
       // スクロールされるべき量を取得 cssのtopと同じ値
       let exp = `(() => {
