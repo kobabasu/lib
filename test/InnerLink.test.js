@@ -75,6 +75,7 @@ describe('InnerLink', () => {
       const innerLinkFixed = -100;
       exp = `(() => {
         return new Promise((resolve, reject) => {
+          window.pageYOffset = 0;
           new InnerLink({ fixed: ${innerLinkFixed} });
           var btn = document.querySelector('#button');
           var el = document.querySelector('footer');
@@ -85,7 +86,7 @@ describe('InnerLink', () => {
 
           setTimeout(() => {
             resolve(window.pageYOffset);
-          }, 2000);
+          }, 1000);
         });
       })()`;
       const res = await Runtime.evaluate({
