@@ -47,6 +47,7 @@ describe('InnerLink', () => {
       const frame = await Page.navigate({ url: URL });
       Page.loadEventFired();
 
+      // スクロール量を取得するためにheightなどを1に
       Emulation.setDeviceMetricsOverride({
         width: 0,
         height: 1,
@@ -60,6 +61,7 @@ describe('InnerLink', () => {
         html: fetch(HTML)
       });
 
+      // スクロールされるべき量を取得 cssのtopと同じ値
       let exp = `(() => {
         var el = document.querySelector('footer');
         return el.offsetTop;
@@ -69,6 +71,7 @@ describe('InnerLink', () => {
       });
       // console.log(height);
 
+      // InnerLinkのfixedの値を保存
       const innerLinkFixed = -100;
       exp = `(() => {
         return new Promise((resolve, reject) => {
@@ -92,6 +95,8 @@ describe('InnerLink', () => {
       // console.log(res);
       try {
         const ans = height.result.value + innerLinkFixed;
+
+        // スクロール量からfixedを追加した値となるべき
         assert.equal(res.result.value, ans);
       } catch(error) {
         return done(error);
