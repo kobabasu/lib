@@ -30,10 +30,12 @@
   function InnerLink(options) {
 
     options = options || {} ;
+    this._fixed = options['fixed'] || FIXED ;
 
     this._links = global.document.documentElement
       .querySelectorAll('a[href^="#"]');
     for (var i = 0; i < this._links.length; i++) {
+      this._links[i].fixed = this._fixed;
       this._links[i].addEventListener(
         'click',
         _click,
@@ -53,7 +55,7 @@
     if (hash && hash.match(/^#.*/)) {
       var el = global.document.getElementById(hash.replace(/#/g, ''));
       if (el) {
-        _scroll(el.offsetTop + FIXED, 50, 'easeInOutQuint');
+        _scroll(el.offsetTop + e.target.fixed, 50, 'easeInOutQuint');
       }
     }
   }
