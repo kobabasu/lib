@@ -59,8 +59,7 @@ describe('InnerLink', () => {
         deviceScaleFactor: 0,
         mobile: false,
         screenHeight: 1,
-        positionX: 0,
-        positionY: 0
+        fitWindow: false
       });
 
 
