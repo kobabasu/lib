@@ -47,6 +47,11 @@ describe('InnerLink', () => {
       const frame = await Page.navigate({ url: URL });
       Page.loadEventFired();
 
+      await Page.setDocumentContent({
+        frameId: frame.frameId,
+        html: fetch(HTML)
+      });
+
       // スクロール量を取得するためにheightなどを1に
       Emulation.setDeviceMetricsOverride({
         width: 0,
@@ -58,10 +63,6 @@ describe('InnerLink', () => {
         positionY: 0
       });
 
-      await Page.setDocumentContent({
-        frameId: frame.frameId,
-        html: fetch(HTML)
-      });
 
       // スクロールされるべき量を取得 cssのtopと同じ値
       let exp = `(() => {
