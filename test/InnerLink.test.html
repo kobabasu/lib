@@ -9,10 +9,16 @@
         height: 20px;
       }
     </style>
+    <script src="../modules/InnerLink.js"></script>
   </head>
   <body>
     <header><a id="button" href="#bottom">bottom</a></header>
     <div id="mocha"></div>
     <footer id="bottom">bottom</footer>
+
+    <script>
+      var module = new InnerLink();
+      module.init();
+    </script>
   </body>
 </html>
