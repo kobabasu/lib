@@ -42,12 +42,12 @@
   });
 
   function InnerLink_init() {
-    this._links = global.document.documentElement
+    var links = global.document.documentElement
       .querySelectorAll('a[href^="#"]');
 
-    for (var i = 0; i < this._links.length; i++) {
-      this._links[i].fixed = this._fixed;
-      this._links[i].addEventListener(
+    for (var i = 0; i < links.length; i++) {
+      links[i].fixed = this._fixed;
+      links[i].addEventListener(
         'click',
         _click,
         {passive: true}
