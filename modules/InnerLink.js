@@ -34,9 +34,17 @@
     options = options || {} ;
 
     this._fixed = options['fixed'] || FIXED ;
+  }
 
+  InnerLink.prototype = Object.create(Object.prototype, {
+    'constructor': { 'value': InnerLink },
+    'init': { 'value': InnerLink_init }
+  });
+
+  function InnerLink_init() {
     this._links = global.document.documentElement
       .querySelectorAll('a[href^="#"]');
+
     for (var i = 0; i < this._links.length; i++) {
       this._links[i].fixed = this._fixed;
       this._links[i].addEventListener(
@@ -46,10 +54,6 @@
       );
     };
   }
-
-  InnerLink.prototype = Object.create(Object.prototype, {
-    'constructor': { 'value': InnerLink }
-  });
 
   function _click(e) {
     var hash = e.target.getAttribute('href') ||
