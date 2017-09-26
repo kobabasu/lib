@@ -11,7 +11,7 @@
   if (typeof define === 'function' && define.amd) {
     define(factory(global));
   } else if (typeof exports === 'object') {
-    module.exports = factory(global);
+    module.exports.InnerLink = factory(global);
   } else {
     InnerLink = factory(global);
   }
