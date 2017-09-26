@@ -2,6 +2,8 @@
  * InnerLink
  *
  * インナーリンクにスクロールを加える
+ * @param {Object[]} options - 各オプションを指定
+ * @param {string} options[].fixed=-100 - スクロールを止める対象からの位置
  *
  * @return {void}
  */
@@ -30,6 +32,7 @@
   function InnerLink(options) {
 
     options = options || {} ;
+
     this._fixed = options['fixed'] || FIXED ;
 
     this._links = global.document.documentElement
