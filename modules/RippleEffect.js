@@ -2,6 +2,7 @@
  * RippleEffect
  *
  * ripple effectを追加する
+ * APPEND_CLASS_NAMEを変更した場合はcss側も調整が必要
  *
  * @param {Object[]} options - 各オプションを指定
  * @param {string} opotions[].class='.ripple' - 付加するクラスを指定する
