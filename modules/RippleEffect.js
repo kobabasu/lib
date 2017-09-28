@@ -27,8 +27,6 @@
     options = options || {};
 
     this._class = options['class'] || CLASS_NAME ;
-
-    this.init();
   }
 
   RippleEffect.prototype = Object.create(Object.prototype, {
