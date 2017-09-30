@@ -74,10 +74,11 @@ describe('InnerLink', () => {
       // console.log(height);
 
       // InnerLinkのfixedの値を保存
-      const innerLinkFixed = -100;
+      const innerLinkFixed = 0;
       exp = `(() => {
         return new Promise((resolve, reject) => {
-          new InnerLink({ fixed: ${innerLinkFixed} });
+          var module = new InnerLink({ fixed: ${innerLinkFixed} });
+          module.init();
           var btn = document.querySelector('#button');
           var el = document.querySelector('footer');
 
