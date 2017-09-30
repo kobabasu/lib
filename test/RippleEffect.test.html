@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RippleEffect</title>
+  <script src="../modules/RippleEffect.js"></script>
+  <style>
+    .ripple {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+
+      width: 100px;
+      height: 100px;
+      border: 1px solid #CCC;
+    }
+
+    .ripple-effect {
+      width: 300px;
+      height: 300px;
+
+      position: absolute;
+      border-radius: 100%;
+      transform: scale(0);
+      background-color: #E02690;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .ripple-effect.active {
+      animation: ripple .75s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="ripple">
+    <p>RippleEffect</p> 
+  </div>
+
+  <script>
+    var module = new RippleEffect();
+    module.init();
+  </script>
+</body>
+</html>

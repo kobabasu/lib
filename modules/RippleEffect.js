@@ -2,6 +2,7 @@
  * RippleEffect
  *
  * ripple effectを追加する
+ * APPEND_CLASS_NAMEを変更した場合はcss側も調整が必要
  *
  * @param {Object[]} options - 各オプションを指定
  * @param {string} opotions[].class='.ripple' - 付加するクラスを指定する
@@ -19,7 +20,7 @@
 })(function() {
   'use strict';
 
-  var CLASS_NAME = '.ripple';
+  var CLASS_NAME = '.ripples';
   var APPEND_CLASS_NAME = 'ripple-effect';
 
   function RippleEffect(options) {
@@ -27,8 +28,6 @@
     options = options || {};
 
     this._class = options['class'] || CLASS_NAME ;
-
-    this.init();
   }
 
   RippleEffect.prototype = Object.create(Object.prototype, {
@@ -38,6 +37,9 @@
 
   function RippleEffect_init() {
     var els = document.querySelectorAll(this._class);
+
+    if (els.length) return;
+
     for (var i = 0; i < els.length; i++) {
       _append(els[i]);
     }
