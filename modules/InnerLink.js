@@ -33,7 +33,7 @@
 
     options = options || {} ;
 
-    this._fixed = options['fixed'] || FIXED ;
+    this._fixed = (isFinite(options['fixed'])) ? options['fixed'] : FIXED ;
   }
 
   InnerLink.prototype = Object.create(Object.prototype, {
