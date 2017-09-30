@@ -20,7 +20,7 @@
 })(function() {
   'use strict';
 
-  var CLASS_NAME = '.ripple';
+  var CLASS_NAME = '.ripples';
   var APPEND_CLASS_NAME = 'ripple-effect';
 
   function RippleEffect(options) {
@@ -37,6 +37,9 @@
 
   function RippleEffect_init() {
     var els = document.querySelectorAll(this._class);
+
+    if (els.length) return;
+
     for (var i = 0; i < els.length; i++) {
       _append(els[i]);
     }
