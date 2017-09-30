@@ -53,14 +53,13 @@ describe('RippleEffect', () => {
       });
 
       const exp = `(() => {
-        return 4;
+        var module = new RippleEffect();
+        return module.init();
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
-
-      const thisyear = new Date().getFullYear();
       try {
-        assert.equal(res.result.value, 4);
+        assert.notEqual(res.result.subtype, 'error');
       } catch(error) {
         return done(error);
       } finally {
