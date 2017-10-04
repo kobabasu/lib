@@ -26,15 +26,19 @@
     options = options || {} ;
 
     this._class = options['class'] || CLASS_NAME ;
-    this._target = global.document.querySelector(this._class);
-    this._bottomElement = global.document
-      .querySelector(MARGIN_BOTTOM_ELEMENT);
   }
 
   ScrollTop.prototype = Object.create(Object.prototype, {
     'constructor': { 'value': ScrollTop },
+    'init': { 'value': ScrollTop_init },
     'animate': { 'value': ScrollTop_animate }
   });
+
+  function ScrollTop_init() {
+    this._target = global.document.querySelector(this._class);
+    this._bottomElement = global.document
+      .querySelector(MARGIN_BOTTOM_ELEMENT);
+  }
 
   function ScrollTop_animate() {
     var pos = global.innerHeight - this._bottomElement
