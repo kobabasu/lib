@@ -54,12 +54,12 @@ describe('ScrollTop', () => {
 
       const exp = `(() => {
         var module = new ScrollTop();
-        return 4;
+        return module.init();
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
       // console.log(res);
       try {
-        assert.equal(res.result.value, 4);
+        assert.notEqual(res.result.subtype, 'error');
       } catch(error) {
         return done(error);
       } finally {
