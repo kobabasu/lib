@@ -3,6 +3,8 @@
  *
  * @param {Object[]} options - 各オプションを指定
  * @param {string} options[].class='.scrolltop' - スクロールアイコンのクラス
+ * @param {string} options[].tracked='footer' - .scrolltopを配置する下のelement
+ * @param {number} options[].margin=5 - tracked_elementからの距離
  *
  * @return {void}
  */
