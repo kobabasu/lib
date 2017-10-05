@@ -38,6 +38,8 @@
     this._target = global.document.querySelector(this._class);
     this._bottomElement = global.document
       .querySelector(MARGIN_BOTTOM_ELEMENT);
+
+    this._target.style.zIndex = 9999;
   }
 
   function ScrollTop_animate() {
@@ -49,7 +51,6 @@
     } else {
       this._target.style.bottom = DISTANCE + 'px';
     };
-    this._target.style.zIndex = 9999;
   }
 
   return ScrollTop;
