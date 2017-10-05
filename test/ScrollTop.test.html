@@ -26,7 +26,10 @@
   <footer>footer</footer>
 
   <script>
-    var module = new ScrollTop();
+    var module = new ScrollTop({
+      tracked: 'footers',
+      margin: 5
+    });
     module.init();
     
     window.addEventListener(
