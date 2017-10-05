@@ -26,7 +26,7 @@ const launchChrome = async () => {
 
 describe('ScrollTop', () => {
 
-  it('クラスがなくともエラーとならないか', (done) => {
+  it('init()でクラスがなくともエラーとならないか', (done) => {
 
     launchChrome().then(async (chrome) => {
       const client = await CDP({ port: chrome.port });
@@ -57,6 +57,55 @@ describe('ScrollTop', () => {
         return module.init();
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
+
+      // console.log(res);
+      try {
+        assert.notEqual(res.result.subtype, 'error');
+      } catch(error) {
+        return done(error);
+      } finally {
+        client.close();
+        chrome.kill();
+      }
+
+      done();
+    });
+  });
+
+
+  it('animate()でクラスがなくともエラーとならないか', (done) => {
+
+    launchChrome().then(async (chrome) => {
+      const client = await CDP({ port: chrome.port });
+      const { Page, Runtime, DOM, Console } = client;
+      await Promise.all([
+        Page.enable(),
+        Runtime.enable(),
+        DOM.enable(),
+        Console.enable()
+      ]);
+
+      Console.messageAdded((msg) => console.log(msg));
+
+      await Page.addScriptToEvaluateOnLoad({
+        scriptSource: fetch(JS)
+      });
+
+      const frame = await Page.navigate({ url: URL });
+      Page.loadEventFired();
+
+      await Page.setDocumentContent({
+        frameId: frame.frameId,
+        html: fetch(HTML)
+      });
+
+      const exp = `(() => {
+        var module = new ScrollTop();
+        module.init();
+        return module.animate();
+      })()`;
+      const res = await Runtime.evaluate({ expression: exp });
+
       // console.log(res);
       try {
         assert.notEqual(res.result.subtype, 'error');
