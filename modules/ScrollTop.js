@@ -19,7 +19,7 @@
 
   var CLASS_NAME = '.scrolltop';
   var TRACKED_ELEMENT = 'footer';
-  var DISTANCE = 5;
+  var MARGIN = 5;
 
   function ScrollTop(options) {
 
@@ -48,9 +48,9 @@
       .getBoundingClientRect().top;
 
     if (pos > 0) {
-      this._target.style.bottom = pos + DISTANCE + 'px';
+      this._target.style.bottom = pos + MARGIN + 'px';
     } else {
-      this._target.style.bottom = DISTANCE + 'px';
+      this._target.style.bottom = MARGIN + 'px';
     };
   }
 
