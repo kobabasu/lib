@@ -27,6 +27,7 @@
 
     this._class = options['class'] || CLASS_NAME ;
     this._tracked = options['tracked'] || TRACKED_ELEMENT ;
+    this._margin = options['margin'] || MARGIN ;
   }
 
   ScrollTop.prototype = Object.create(Object.prototype, {
@@ -49,9 +50,9 @@
       .getBoundingClientRect().top;
 
     if (pos > 0) {
-      this._target.style.bottom = pos + MARGIN + 'px';
+      this._target.style.bottom = pos + this._margin + 'px';
     } else {
-      this._target.style.bottom = MARGIN + 'px';
+      this._target.style.bottom = this._margin + 'px';
     };
   }
 
