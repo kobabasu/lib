@@ -36,7 +36,7 @@
 
   function ScrollTop_init() {
     this._target = global.document.querySelector(this._class);
-    this._bottomElement = global.document
+    this._trackedElement = global.document
       .querySelector(TRACKED_ELEMENT);
 
     this._target.style.position = 'fixed';
@@ -44,7 +44,7 @@
   }
 
   function ScrollTop_animate() {
-    var pos = global.innerHeight - this._bottomElement
+    var pos = global.innerHeight - this._trackedElement
       .getBoundingClientRect().top;
 
     if (pos > 0) {
