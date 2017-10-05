@@ -39,6 +39,7 @@
     this._bottomElement = global.document
       .querySelector(MARGIN_BOTTOM_ELEMENT);
 
+    this._target.style.position = 'fixed';
     this._target.style.zIndex = 9999;
   }
 
