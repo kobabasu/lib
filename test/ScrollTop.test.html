@@ -3,15 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>ScrollTop</title>
+
+  <style>
+    div {
+      height: 2000px;
+    }
+
+    footer {
+      height: 400px;
+      background-color: #EEE;
+    }
+  </style>
+
   <script src="../modules/ScrollTop.js"></script>
 </head>
 <body>
-  <div>
+  <div id="pagetop">
     <p>ScrollTop</p> 
   </div>
 
+  <a href="#pagetop" class="scrolltop">back to top</a>
+  <footer>footer</footer>
+
   <script>
     var module = new ScrollTop();
+    module.init();
+    
+    window.addEventListener(
+      'scroll',
+      function() {
+        module.animate();
+      }
+    );
   </script>
 </body>
 </html>
