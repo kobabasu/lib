@@ -26,6 +26,7 @@
     options = options || {} ;
 
     this._class = options['class'] || CLASS_NAME ;
+    this._tracked = options['tracked'] || TRACKED_ELEMENT ;
   }
 
   ScrollTop.prototype = Object.create(Object.prototype, {
@@ -37,7 +38,7 @@
   function ScrollTop_init() {
     this._target = global.document.querySelector(this._class);
     this._trackedElement = global.document
-      .querySelector(TRACKED_ELEMENT);
+      .querySelector(this._tracked);
 
     this._target.style.position = 'fixed';
     this._target.style.zIndex = 9999;
