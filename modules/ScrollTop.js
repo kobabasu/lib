@@ -18,7 +18,7 @@
   'use strict';
 
   var CLASS_NAME = '.scrolltop';
-  var MARGIN_BOTTOM_ELEMENT = 'footer';
+  var TRACKED_ELEMENT = 'footer';
   var DISTANCE = 5;
 
   function ScrollTop(options) {
@@ -37,7 +37,7 @@
   function ScrollTop_init() {
     this._target = global.document.querySelector(this._class);
     this._bottomElement = global.document
-      .querySelector(MARGIN_BOTTOM_ELEMENT);
+      .querySelector(TRACKED_ELEMENT);
 
     this._target.style.position = 'fixed';
     this._target.style.zIndex = 9999;
