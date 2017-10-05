@@ -44,14 +44,14 @@
     this._trackedElement = global.document
       .querySelector(this._tracked);
 
-    if (!this._target || !this.trackedElement) return;
+    if (!this._target || !this._trackedElement) return;
 
     this._target.style.position = 'fixed';
     this._target.style.zIndex = 9999;
   }
 
   function ScrollTop_animate() {
-    if (!this._target || !this.trackedElement) return;
+    if (!this._target && !this._trackedElement) return;
 
     var pos = global.innerHeight - this._trackedElement
       .getBoundingClientRect().top;
