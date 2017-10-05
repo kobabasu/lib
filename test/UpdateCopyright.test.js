@@ -68,7 +68,7 @@ describe('UpdateCopyright', () => {
 
       const thisyear = new Date().getFullYear();
       try {
-        assert.notEqual(res.result.subtype, 'errors');
+        assert.notEqual(res.result.subtype, 'error');
       } catch(error) {
         return done(error);
       } finally {
