@@ -40,7 +40,7 @@
     var name = this._name;
     global.matchMedia(this._viewport).addListener(function(e) {
       return this.setStatus(e.matches);
-    });
+    }.bind(this));
   }
 
   function DetectViewport_setStatus(status) {
