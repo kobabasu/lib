@@ -272,6 +272,7 @@ describe('ScrollTop', () => {
       trackedHeight = trackedHeight.result.value;
 
       // bodyのmarginをゼロにし、.scrolltopの位置を取得
+      // alpine-chromeのcss解釈が違うため.scrolltopの高さを固定
       const margin = 5;
       exp = `(async () => {
         document.body.style.margin = 0;
