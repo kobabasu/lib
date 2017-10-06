@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>InnerLink</title>
     <meta charset="utf-8">
+
     <style>
       footer {
         position: absolute;
@@ -9,6 +11,7 @@
         height: 20px;
       }
     </style>
+
     <script src="../modules/InnerLink.js"></script>
   </head>
   <body>
@@ -17,7 +20,9 @@
     <footer id="bottom">bottom</footer>
 
     <script>
-      var module = new InnerLink({ fixed: -50 });
+      var module = new InnerLink({
+        fixed: -50
+      });
       module.init();
     </script>
   </body>

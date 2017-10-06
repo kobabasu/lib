@@ -53,7 +53,7 @@ describe('ScrollTop', () => {
       });
 
       const exp = `(() => {
-        var module = new ScrollTop();
+        const module = new ScrollTop();
         return module.init();
       })()`;
       const res = await Runtime.evaluate({ expression: exp });
@@ -100,7 +100,7 @@ describe('ScrollTop', () => {
       });
 
       const exp = `(() => {
-        var module = new ScrollTop();
+        const module = new ScrollTop();
         module.init();
         return module.animate();
       })()`;
