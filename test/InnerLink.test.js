@@ -65,7 +65,7 @@ describe('InnerLink', () => {
 
       // スクロールされるべき量を取得 cssのtopと同じ値
       let exp = `(() => {
-        var el = document.querySelector('footer');
+        const el = document.querySelector('footer');
         return el.offsetTop;
       })();`;
       const height = await Runtime.evaluate({
@@ -77,12 +77,12 @@ describe('InnerLink', () => {
       const innerLinkFixed = 0;
       exp = `(() => {
         return new Promise((resolve, reject) => {
-          var module = new InnerLink({ fixed: ${innerLinkFixed} });
+          const module = new InnerLink({ fixed: ${innerLinkFixed} });
           module.init();
-          var btn = document.querySelector('#button');
-          var el = document.querySelector('footer');
+          const btn = document.querySelector('#button');
+          const el = document.querySelector('footer');
 
-          var ev = document.createEvent('MouseEvents');
+          const ev = document.createEvent('MouseEvents');
           ev.initEvent('click', true, true);
           btn.dispatchEvent(ev);
 
