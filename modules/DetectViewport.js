@@ -50,6 +50,7 @@
       this.status = global.matchMedia(this._viewport).matches;
     }
 
+    console.log(this.status);
     return this.status;
   }
 
