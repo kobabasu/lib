@@ -158,8 +158,11 @@ describe('ScrollTop', () => {
       });
 
       // .scrolltopの高さを取得
+      // alpine-chromeのcss解釈が違うため.scrolltopの高さを固定
       let exp = `(() => {
         const el = document.querySelector('.scrolltop');
+        el.style.display = 'block';
+        el.style.height = '30px';
         return el.getBoundingClientRect().height;
       })();`;
       let targetHeight = await Runtime.evaluate({
@@ -178,9 +181,15 @@ describe('ScrollTop', () => {
       trackedHeight = trackedHeight.result.value;
 
       // bodyのmarginをゼロにし、.scrolltopの位置を取得
+      // alpine-chromeのcss解釈が違うため.scrolltopの高さを固定
       const margin = 5;
       exp = `(async () => {
         document.body.style.margin = 0;
+
+        const el = document.querySelector('.scrolltop');
+        el.style.display = 'block';
+        el.style.height = '30px';
+
         const module = await new ScrollTop({
           margin: ${margin}
         });
@@ -188,7 +197,6 @@ describe('ScrollTop', () => {
 
         await module.animate();
 
-        const el = document.querySelector('.scrolltop');
         return el.getBoundingClientRect().top;
       })()`;
       const res = await Runtime.evaluate({
@@ -250,6 +258,7 @@ describe('ScrollTop', () => {
       });
 
       // .scrolltopの高さを取得
+      // alpine-chromeのcss解釈が違うため.scrolltopの高さを固定
       let exp = `(() => {
         const el = document.querySelector('.scrolltop');
         el.style.display = 'block';
