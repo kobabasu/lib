@@ -6,6 +6,7 @@
  * @param {Object[]} options - 各オプションを指定
  * @param {string} options[].name='sp' - viewportの名前 consoleに表示
  * @param {string} options[].viewport='(max-width: 767px)' - viewport
+ * @param {Boolean} optoins[].debug=false - デバッグモード
  *
  * @return {void}
  */
@@ -20,12 +21,15 @@
 })((this || 0).self || global, function(global) {
   'use strict';
 
+  var DEBUG = false ;
+
   function DetectViewport(options) {
 
     options = options || {};
 
     this._name = options['name'] || 'sp';
     this._viewport = options['viewport'] || '(max-width: 767px)';
+    this._debug = options['debug'] || DEBUG ;
     this.status = this.setStatus();
   }
 
