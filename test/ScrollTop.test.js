@@ -252,7 +252,9 @@ describe('ScrollTop', () => {
       // .scrolltopの高さを取得
       let exp = `(() => {
         const el = document.querySelector('.scrolltop');
-        return el.clientHeight;
+        el.style.display = 'block';
+        el.style.height = '30px';
+        return el.getBoundingClientRect().height;
       })();`;
       let targetHeight = await Runtime.evaluate({
         expression: exp
@@ -262,7 +264,7 @@ describe('ScrollTop', () => {
       // footerの高さを取得
       exp = `(() => {
         const el = document.querySelector('footer');
-        return el.clientHeight;
+        return el.getBoundingClientRect().height;
       })();`;
       let trackedHeight = await Runtime.evaluate({
         expression: exp
@@ -273,6 +275,11 @@ describe('ScrollTop', () => {
       const margin = 5;
       exp = `(async () => {
         document.body.style.margin = 0;
+
+        const el = document.querySelector('.scrolltop');
+        el.style.display = 'block';
+        el.style.height = '30px';
+
         const module = await new ScrollTop({
           margin: ${margin}
         });
@@ -281,8 +288,6 @@ describe('ScrollTop', () => {
         await window.scrollTo(0, 9999);
 
         await module.animate();
-
-        const el = document.querySelector('.scrolltop');
         return el.getBoundingClientRect().top;
       })()`;
       const res = await Runtime.evaluate({
