@@ -54,7 +54,7 @@
       this.status = global.matchMedia(this._viewport).matches;
     }
 
-    if (this._debug) _showStatus(this.status);
+    if (this._debug) _showStatus(this.status, this._name);
     return this.status;
   }
 
@@ -62,9 +62,9 @@
     return this.status;
   }
 
-  function _showStatus(status) {
+  function _showStatus(status, name) {
     var msg = 'DetectViewport: matchMedia status is '
-    console.log(msg + status);
+    console.log(msg + status + ' [' + name + ']');
   }
 
   return DetectViewport;
