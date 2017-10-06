@@ -26,6 +26,7 @@ var ready = new Ready({
     this.scrollit = new ScrollIt();
     this.scrollit.init();
     this.scrolltop = new ScrollTop();
+    this.scrolltop.init();
     new SlideMenu();
     /* new HumbergerMenu(); */
     this.slideshow = new SlideShow();
