@@ -10,7 +10,11 @@
   <span class="copyright">2016</span>
 
   <script>
-    var module = new UpdateCopyright();
+    var module = new UpdateCopyright({
+      class: '.copyright',
+      thisyear: '2018',
+      prefix: ''
+    });
     module.init();
   </script>
 </body>
