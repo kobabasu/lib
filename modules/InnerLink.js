@@ -2,6 +2,8 @@
  * InnerLink
  *
  * インナーリンクにスクロールを加える
+ * @param {Object[]} options - 各オプションを指定
+ * @param {string} options[].fixed=-100 - スクロールを止める対象からの位置
  *
  * @return {void}
  */
@@ -9,7 +11,7 @@
   if (typeof define === 'function' && define.amd) {
     define(factory(global));
   } else if (typeof exports === 'object') {
-    module.exports = factory(global);
+    module.exports.InnerLink = factory(global);
   } else {
     InnerLink = factory(global);
   }
@@ -30,23 +32,28 @@
   function InnerLink(options) {
 
     options = options || {} ;
-    this._fixed = options['fixed'] || FIXED ;
 
-    this._links = global.document.documentElement
+    this._fixed = (isFinite(options['fixed'])) ? options['fixed'] : FIXED ;
+  }
+
+  InnerLink.prototype = Object.create(Object.prototype, {
+    'constructor': { 'value': InnerLink },
+    'init': { 'value': InnerLink_init }
+  });
+
+  function InnerLink_init() {
+    var links = global.document.documentElement
       .querySelectorAll('a[href^="#"]');
-    for (var i = 0; i < this._links.length; i++) {
-      this._links[i].fixed = this._fixed;
-      this._links[i].addEventListener(
+
+    for (var i = 0; i < links.length; i++) {
+      links[i].fixed = this._fixed;
+      links[i].addEventListener(
         'click',
         _click,
         {passive: true}
       );
     };
   }
-
-  InnerLink.prototype = Object.create(Object.prototype, {
-    'constructor': { 'value': InnerLink }
-  });
 
   function _click(e) {
     var hash = e.target.getAttribute('href') ||
