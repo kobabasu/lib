@@ -54,12 +54,17 @@
       this.status = global.matchMedia(this._viewport).matches;
     }
 
-    console.log(this.status);
+    if (this._debug) _showStatus(this.status);
     return this.status;
   }
 
   function DetectViewport_getStatus() {
     return this.status;
+  }
+
+  function _showStatus(status) {
+    var msg = 'DetectViewport: matchMedia status is '
+    console.log(msg + status);
   }
 
   return DetectViewport;
