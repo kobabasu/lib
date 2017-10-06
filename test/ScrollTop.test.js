@@ -272,7 +272,6 @@ describe('ScrollTop', () => {
       // bodyのmarginをゼロにし、.scrolltopの位置を取得
       const margin = 5;
       exp = `(async () => {
-        document.body.style.margin = 0;
         const module = await new ScrollTop({
           margin: ${margin}
         });
