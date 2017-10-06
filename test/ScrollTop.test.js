@@ -160,7 +160,7 @@ describe('ScrollTop', () => {
       // .scrolltopの高さを取得
       let exp = `(() => {
         const el = document.querySelector('.scrolltop');
-        return el.clientHeight;
+        return el.getBoundingClientRect().height;
       })();`;
       let targetHeight = await Runtime.evaluate({
         expression: exp
@@ -170,7 +170,7 @@ describe('ScrollTop', () => {
       // footerの高さを取得
       exp = `(() => {
         const el = document.querySelector('footer');
-        return el.clientHeight;
+        return el.getBoundingClientRect().height;
       })();`;
       let trackedHeight = await Runtime.evaluate({
         expression: exp
