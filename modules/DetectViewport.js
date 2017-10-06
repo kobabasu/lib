@@ -35,12 +35,12 @@
 
   DetectViewport.prototype = Object.create(Object.prototype, {
     'constructor': { 'value': DetectViewport },
-    'listen': { 'value': DetectViewport_listen },
+    'init': { 'value': DetectViewport_init },
     'setStatus': { 'value': DetectViewport_setStatus },
     'getStatus': { 'value': DetectViewport_getStatus }
   });
 
-  function DetectViewport_listen() {
+  function DetectViewport_init() {
     var name = this._name;
     global.matchMedia(this._viewport).addListener(function(e) {
       return this.setStatus(e.matches);
