@@ -53,7 +53,7 @@ describe('RippleEffect', () => {
       });
 
       const exp = `(() => {
-        var module = new RippleEffect();
+        const module = new RippleEffect();
         return module.init();
       })()`;
       const res = await Runtime.evaluate({ expression: exp });

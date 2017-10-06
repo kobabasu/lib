@@ -65,7 +65,7 @@ describe('InnerLink', () => {
 
       // スクロールされるべき量を取得 cssのtopと同じ値
       let exp = `(() => {
-        var el = document.querySelector('footer');
+        const el = document.querySelector('footer');
         return el.offsetTop;
       })();`;
       const height = await Runtime.evaluate({
@@ -75,21 +75,18 @@ describe('InnerLink', () => {
 
       // InnerLinkのfixedの値を保存
       const innerLinkFixed = 0;
-      exp = `(() => {
-        return new Promise((resolve, reject) => {
-          var module = new InnerLink({ fixed: ${innerLinkFixed} });
-          module.init();
-          var btn = document.querySelector('#button');
-          var el = document.querySelector('footer');
+      exp = `(async () => {
+        const module = new InnerLink({ fixed: ${innerLinkFixed} });
+        await module.init();
+        const btn = document.querySelector('#button');
+        const el = document.querySelector('footer');
 
-          var ev = document.createEvent('MouseEvents');
-          ev.initEvent('click', true, true);
-          btn.dispatchEvent(ev);
+        const ev = document.createEvent('MouseEvents');
+        await ev.initEvent('click', true, true);
+        await btn.dispatchEvent(ev);
 
-          setTimeout(() => {
-            resolve(window.pageYOffset);
-          }, 1000);
-        });
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return window.pageYOffset;
       })()`;
       const res = await Runtime.evaluate({
         expression: exp,

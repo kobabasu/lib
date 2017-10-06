@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>RippleEffect</title>
-  <script src="../modules/RippleEffect.js"></script>
+
   <style>
     .ripple {
       position: relative;
@@ -42,6 +42,7 @@
     }
   </style>
 
+  <script src="../modules/RippleEffect.js"></script>
 </head>
 <body>
   <div class="ripple">
@@ -49,7 +50,9 @@
   </div>
 
   <script>
-    var module = new RippleEffect();
+    var module = new RippleEffect({
+      class: '.ripple'
+    });
     module.init();
   </script>
 </body>

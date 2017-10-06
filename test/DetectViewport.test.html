@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>DetectViewport</title>
+
+  <script src="../modules/DetectViewport.js"></script>
 </head>
+
 <body>
+  <script>
+    const module = new DetectViewport({
+      name: 'sp',
+      viewport: '(max-width: 767px)',
+      // debug: true
+    });
+    module.init();
+  </script>
 </body>
 </html>

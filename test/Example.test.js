@@ -24,7 +24,7 @@ const launchChrome = async () => {
   }
 }
 
-describe('chrome-headless-sample', () => {
+describe('Example', () => {
   it('titleを評価できるか', (done) => {
 
     launchChrome().then(async (chrome) => {

@@ -13,14 +13,16 @@ var ready = new Ready({
 
   'complete': function() {
     this.imagesrcset = new ImageSrcset();
-    new DetectViewport({
+    this.viewportSp = new DetectViewport({
       'name': 'sp',
       'viewport': '(max-width: 767px)'
     });
-    new DetectViewport({
+    this.viewportSp.init();
+    this.viewport5k = new DetectViewport({
       'name': '5k',
       'viewport': '(min-width: 1280px)'
     });
+    this.viewport5k.init();
     new InnerLink();
     this.inview = new InView();
     this.scrollit = new ScrollIt();
