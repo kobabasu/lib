@@ -10,7 +10,7 @@ const JS = './modules/InnerLink.js';
 
 const fetch = (filename) => {
   const filepath = dir.root + filename;
-  return fs.readFileSync(filename, 'utf-8');
+  return fs.readFileSync(filepath, 'utf-8');
 }
 
 const launchChrome = async () => {
