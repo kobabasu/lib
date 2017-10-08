@@ -24,6 +24,7 @@
 
   var CLASS_NAME = '.copyright';
 
+  /* istanbul ignore next */
   function UpdateCopyright(options) {
     
     options = options || {};
@@ -47,12 +48,13 @@
     _change(el, this._prefix, this._thisyear);
   }
 
-  function _change(el, prefix, year) {
-    el.innerHTML = prefix + year;
-  };
-
   function _getThisyear() {
     return new Date().getFullYear();
+  };
+
+  /* istanbul ignore next */
+  function _change(el, prefix, year) {
+    el.innerHTML = prefix + year;
   };
 
   return UpdateCopyright;
