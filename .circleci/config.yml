@@ -48,3 +48,6 @@ jobs:
 
       - store_artifacts:
           path: ./results
+
+      - store_artifacts:
+          path: ./coverage
