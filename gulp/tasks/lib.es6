@@ -51,6 +51,21 @@ class Lib extends DefaultRegistry {
 
 
     /*
+     * mocha:cover
+     */
+    gulp.task(prefix + 'lib:mocha:cover', shell.task([`
+      nyc \
+      --reporter=lcov \
+      --reporter=text \
+      --reporter=cobertura \
+      mocha ${dir.test}*.js \
+      --require babel-register \
+      -g '^(?!EXCLUDE)' \
+      --timeout 10000
+    `]));
+
+
+    /*
      * mocha:report
      */
     gulp.task(prefix + 'lib:mocha:report', shell.task([`
@@ -81,6 +96,7 @@ class Lib extends DefaultRegistry {
      */
     gulp.task(prefix + 'lib:build', gulp.series(
         prefix + 'lib:mocha:report',
+        prefix + 'lib:mocha:cover',
         prefix + 'lib:copy',
         prefix + 'lib',
         prefix + 'lib:min'
