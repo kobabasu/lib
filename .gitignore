@@ -13,6 +13,8 @@ src/lib.js
 
 # build files
 test-results.xml
+coverage/
+.nyc_output/
 
 # exclude
 

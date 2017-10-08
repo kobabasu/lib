@@ -35,10 +35,10 @@
   },
 
   "scripts": {
-    "global": "npm install -g chromium jq hjson uglify-js mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
-    "preinstall": "mkdir -p ../js; cp src/lib.js.sample src/lib.js",
+    "global": "npm install -g chromium jq hjson uglify-js nyc mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
+    "preinstall": "mkdir -p ../js",
     "postinstall": "gulp lib:build",
-    "test": "gulp lib:mocha:report"
+    "test": "nyc --reporter=lcov --reporter=text --reporter=cobertura gulp lib:mocha:report"
   },
 
   "preferGlobal": true,
