@@ -31,10 +31,10 @@
     options = options || {};
 
     this._class = options['class'] || CLASS_NAME ;
-    this._thisyear = options['thisyear'] || this.getThisyear();
-    this._prefix = options['prefix'] || '';
+    this._thisyear = options['thisyear'] || this.getThisyear() ;
+    this._prefix = options['prefix'] || '' ;
     this._debug = options['debug'] || false ;
-  }
+  };
 
   UpdateCopyright.prototype = Object.create(Object.prototype, {
     'constructor': { 'value': UpdateCopyright },
@@ -53,7 +53,7 @@
     } catch(e) {
       this.log(e);
     }
-  }
+  };
 
   function UpdateCopyright_getThisyear() {
     return new Date().getFullYear();
@@ -68,7 +68,7 @@
       const msg = 'UpdateCopyright: ';
       console.log(msg + e);
     }
-  }
+  };
 
   return UpdateCopyright;
 });
