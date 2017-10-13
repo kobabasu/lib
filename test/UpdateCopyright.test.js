@@ -1,9 +1,10 @@
 import fs from 'fs'
-import { JSDOM } from 'jsdom'
 import { assert } from 'chai'
 import sinon from 'sinon'
+import { JSDOM } from 'jsdom'
 import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
+
 import { dir } from '../gulp/dir.es6'
 import { UpdateCopyright } from '../modules/UpdateCopyright.js'
 
