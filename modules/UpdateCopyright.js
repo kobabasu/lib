@@ -16,7 +16,7 @@
   if (typeof define === 'function' && define.amd) {
     define(factory(global));
   } else if (typeof exports === 'object') {
-    module.exports.UpdateCopyright = factory(global);
+    module.exports = factory(global);
   } else {
     UpdateCopyright = factory(global);
   }
@@ -25,7 +25,6 @@
 
   var CLASS_NAME = '.copyright';
 
-  /* istanbul ignore next */
   function UpdateCopyright(options) {
     
     options = options || {};
@@ -46,7 +45,7 @@
 
   function UpdateCopyright_init() {
     try {
-      const el = global.document.body
+      var el = global.document.body
         .querySelector(this._class);
 
       el.innerHTML = this.change();
@@ -65,7 +64,7 @@
 
   function UpdateCopyright_log(e) {
     if (this._debug) {
-      const msg = 'UpdateCopyright: ';
+      var msg = 'UpdateCopyright: ';
       console.log(msg + e);
     }
   };

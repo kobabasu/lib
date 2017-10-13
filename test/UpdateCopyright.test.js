@@ -6,7 +6,7 @@ import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
 
 import { dir } from '../gulp/dir.es6'
-import { UpdateCopyright } from '../modules/UpdateCopyright.js'
+import UpdateCopyright from '../modules/UpdateCopyright.js'
 
 const URL = 'about:blank';
 const HTML = './test/UpdateCopyright.test.html';
