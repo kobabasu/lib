@@ -16,7 +16,7 @@
   if (typeof define === 'function' && define.amd) {
     define(factory(global));
   } else if (typeof exports === 'object') {
-    module.exports.UpdateCopyright = factory(global);
+    module.exports = factory(global);
   } else {
     UpdateCopyright = factory(global);
   }
