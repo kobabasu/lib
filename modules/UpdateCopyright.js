@@ -30,32 +30,44 @@
     options = options || {};
 
     this._class = options['class'] || CLASS_NAME ;
-    this._thisyear = options['thisyear'] || _getThisyear();
+    this._thisyear = options['thisyear'] || this.getThisyear();
     this._prefix = options['prefix'] || '';
+    this._debug = options['debug'] || false ;
   }
 
   UpdateCopyright.prototype = Object.create(Object.prototype, {
     'constructor': { 'value': UpdateCopyright },
-    'init': { 'value': UpdateCopyright_init }
+    'init': { 'value': UpdateCopyright_init },
+    'log': { 'value': UpdateCopyright_log },
+    'getThisyear': { 'value': UpdateCopyright_getThisyear },
+    'change': { 'value': UpdateCopyright_change }
   });
 
   function UpdateCopyright_init() {
-    var el = global.document.body
-      .querySelector(this._class);
+    try {
+      const el = global.document.body
+        .querySelector(this._class);
 
-    if (!el) return;
-
-    _change(el, this._prefix, this._thisyear);
+      el.innerHTML = this.change();
+    } catch(e) {
+      this.log(e);
+    }
   }
 
-  function _getThisyear() {
+  function UpdateCopyright_getThisyear() {
     return new Date().getFullYear();
   };
 
-  /* istanbul ignore next */
-  function _change(el, prefix, year) {
-    el.innerHTML = prefix + year;
+  function UpdateCopyright_change() {
+    return this._prefix + this._thisyear;
   };
+
+  function UpdateCopyright_log(e) {
+    if (this._debug) {
+      const msg = 'UpdateCopyright: ';
+      console.log(msg + e);
+    }
+  }
 
   return UpdateCopyright;
 });
