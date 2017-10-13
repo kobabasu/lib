@@ -53,7 +53,7 @@ describe('UpdateCopyright', () => {
   });
 
 
-  it('debugがtrueの際エラーが表示されるか', () => {
+  it('debugがtrueでエラーが表示されるか', () => {
     const module = new UpdateCopyright();
     const spy = sinon.spy(console, 'log');
     const msg = 'UpdateCopyright: ';
