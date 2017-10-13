@@ -3,7 +3,7 @@
 # micro-lib
 
 ```
-git add submodule git@github.com-kobabasu:kobabasu/micro-lib.git lib
+git submodule add git@github.com-kobabasu:kobabasu/micro-lib.git lib
 ```
 
 ## npm
