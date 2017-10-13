@@ -4,6 +4,7 @@
 
 ```
 git submodule add git@github.com-kobabasu:kobabasu/micro-lib.git lib
+git submodule init && git submodule update
 ```
 
 ## npm
