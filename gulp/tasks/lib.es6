@@ -95,9 +95,9 @@ class Lib extends DefaultRegistry {
      * build
      */
     gulp.task(prefix + 'lib:build', gulp.series(
+        prefix + 'lib:copy',
         prefix + 'lib:mocha:report',
         prefix + 'lib:mocha:cover',
-        prefix + 'lib:copy',
         prefix + 'lib',
         prefix + 'lib:min'
     ));
