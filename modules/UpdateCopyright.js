@@ -46,7 +46,7 @@
 
   function UpdateCopyright_init() {
     try {
-      const el = global.document.body
+      var el = global.document.body
         .querySelector(this._class);
 
       el.innerHTML = this.change();
@@ -65,7 +65,7 @@
 
   function UpdateCopyright_log(e) {
     if (this._debug) {
-      const msg = 'UpdateCopyright: ';
+      var msg = 'UpdateCopyright: ';
       console.log(msg + e);
     }
   };
