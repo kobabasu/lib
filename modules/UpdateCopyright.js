@@ -25,7 +25,6 @@
 
   var CLASS_NAME = '.copyright';
 
-  /* istanbul ignore next */
   function UpdateCopyright(options) {
     
     options = options || {};
