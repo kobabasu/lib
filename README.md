@@ -62,7 +62,7 @@ Dockerfileを編集しbuildしdocker hubにpush
 1. `gulp [prefix]:lib:min`  
    lib.hjsonに記述されたファイルをuglifyjsを使い結合、圧縮
 1. `gulp [prefix]:lib:copy`  
-   src/からlib.hjson, ready.js, ready-settings.jsコピーし、uglifyjsでready.min.jsを圧縮・生成
+   src/からlib.hjson, ready.js, ready-settings.jsコピーし、uglifyjsでready.min.jsを圧縮・生成 (存在すればコピーしない)
 1. `gulp [prefix]:lib:mocha`  
    mochaでtestディレクトリ内の`js`拡張子が付いたファイルをtest
 1. `gulp [prefix]:lib:mocha:report`  
@@ -87,6 +87,12 @@ gulp lib:buildで一つ上の階層のjsに以下が生成される
 1. npm installでlib:buildが実行され../js/にコピーされる
 1. 生成した../js/lib.hjsonで必要なmoduleを読み込む
 1. `lib`, `lib:min`でビルド
+
+## lib repository update
+1. libディレクリに移動
+1. git pullでアップデート
+1. [prefix]:lib:buildする
+1. ../jsはディレクトリが存在した場合コピーしないので注意する
 
 ## todo
 - [ ] testファイル内のaddScriptToEvaluateOnLoadをchromeのstableでaddScriptToEvaluateOnNewDocumentが使用するようになったら変更する
