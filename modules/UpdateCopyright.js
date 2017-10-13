@@ -7,6 +7,7 @@
  * @param {string} options[].class='.copyright' - 対象となるクラス
  * @param {string} options[].thisyear=Date.getFullYear - 年を指定する
  * @param {string} options[].prefix=null - 年の前に表示する
+ * @param {string} options[].debug=false - デバッグモード
  *
  * @return {void}
  */
