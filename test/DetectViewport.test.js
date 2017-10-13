@@ -3,6 +3,7 @@ import { assert } from 'chai'
 import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
 import { dir } from '../gulp/dir.es6'
+import DetectViewport from '../modules/DetectViewport.js'
 
 const URL = 'about:blank';
 const HTML = './test/DetectViewport.test.html';

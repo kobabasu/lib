@@ -8,6 +8,7 @@
  * @return {void}
  */
 (function(global, factory) {
+  /* istanbul ignore next */
   if (typeof define === 'function' && define.amd) {
     define(factory(global));
   } else if (typeof exports === 'object') {
