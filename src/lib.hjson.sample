@@ -2,6 +2,7 @@
  * lib.hjson
  * @file ページで利用するmodules
  * gulp lib, gulp lib:minで利用
+ * node_modulesのあるディレクトリから記述
  */
 
 [
