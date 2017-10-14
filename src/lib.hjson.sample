@@ -9,19 +9,19 @@
   /*
    * common
    */
-  "./lib/modules/ImageSrcset.js",
-  "./lib/modules/DetectViewport.js",
-  "./lib/modules/InnerLink.js",
-  "./lib/modules/InView.js",
-  "./lib/modules/ScrollIt.js",
-  "./lib/modules/ScrollTop.js",
-  "./lib/modules/SlideMenu.js",
-  // "./lib/modules/HumbergerMenu.js",
+  "../lib/modules/ImageSrcset.js",
+  "../lib/modules/DetectViewport.js",
+  "../lib/modules/InnerLink.js",
+  "../lib/modules/InView.js",
+  "../lib/modules/ScrollIt.js",
+  "../lib/modules/ScrollTop.js",
+  "../lib/modules/SlideMenu.js",
+  // "../lib/modules/HumbergerMenu.js",
 
   /*
    * options
    */
-  "./lib/modules/SlideShow.js",
-  "./lib/modules/RippleEffect.js",
-  "./lib/modules/UpdateCopyright.js"
+  "../lib/modules/SlideShow.js",
+  "../lib/modules/RippleEffect.js",
+  "../lib/modules/UpdateCopyright.js"
 ]
