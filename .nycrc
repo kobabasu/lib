@@ -7,6 +7,7 @@
   "require": [
     "babel-register"
   ],
+  "cache": false,
   "sourceMap": false,
   "instrument": false
 }

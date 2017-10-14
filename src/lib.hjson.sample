@@ -2,25 +2,26 @@
  * lib.hjson
  * @file ページで利用するmodules
  * gulp lib, gulp lib:minで利用
+ * node_modulesのあるディレクトリから記述
  */
 
 [
   /*
    * common
    */
-  "./modules/ImageSrcset.js",
-  "./modules/DetectViewport.js",
-  "./modules/InnerLink.js",
-  "./modules/InView.js",
-  "./modules/ScrollIt.js",
-  "./modules/ScrollTop.js",
-  "./modules/SlideMenu.js",
-  // "./modules/HumbergerMenu.js",
+  "./lib/modules/ImageSrcset.js",
+  "./lib/modules/DetectViewport.js",
+  "./lib/modules/InnerLink.js",
+  "./lib/modules/InView.js",
+  "./lib/modules/ScrollIt.js",
+  "./lib/modules/ScrollTop.js",
+  "./lib/modules/SlideMenu.js",
+  // "./lib/modules/HumbergerMenu.js",
 
   /*
    * options
    */
-  "./modules/SlideShow.js",
-  "./modules/RippleEffect.js",
-  "./modules/UpdateCopyright.js"
+  "./lib/modules/SlideShow.js",
+  "./lib/modules/RippleEffect.js",
+  "./lib/modules/UpdateCopyright.js"
 ]

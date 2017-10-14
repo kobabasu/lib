@@ -56,6 +56,7 @@ class Lib extends DefaultRegistry {
      */
     gulp.task(prefix + 'lib:mocha:cover', shell.task([`
       nyc \
+      --cache false \
       --reporter=lcov \
       --reporter=text \
       --reporter=cobertura \
