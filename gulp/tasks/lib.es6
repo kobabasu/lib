@@ -29,34 +29,24 @@ class Lib extends DefaultRegistry {
 
 
     /*
-     * copy
-     */
-    gulp.task(prefix + 'lib:copy', shell.task([`
-      mkdir -p ${dir.root + '../js'};
-      if [ ! -f ${dir.root + '../js/ready.js'} ]; then
-        cp -n ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
-      fi
-      if [ ! -f ${dir.root + '../js/ready-settings.js'} ]; then
-        cp -n ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
-      fi
-      if [ ! -f ${dir.root + '../js/ready.min.js'} ]; then
-        uglifyjs ${dir.src + 'ready.js'} -o ${dir.root + '../js/ready.min.js'};
-      fi
-      if [ ! -f ${dir.root + '../js/lib.hjson'} ]; then
-        printf "\n";
-        printf "specify the paths in ../js/lib.hjson. (from the same directory as node_modules)";
-        printf "\n\n";
-        cp -n ${dir.src + 'lib.hjson.sample'} ${dir.root + '../js/lib.hjson'};
-      fi
-    `]));
-
-
-    /*
      * mocha
      */
     gulp.task(prefix + 'lib:mocha', shell.task([`
       mocha ${dir.test}*.js \
       --require babel-register \
+      -g '^(?!EXCLUDE)' \
+      --timeout 10000
+    `]));
+
+
+    /*
+     * mocha:report
+     */
+    gulp.task(prefix + 'lib:mocha:report', shell.task([`
+      mocha ${dir.test}*.js \
+      --require babel-register \
+      --reporter mocha-junit-reporter \
+      --reporter-options mochaFile=${dir.report} \
       -g '^(?!EXCLUDE)' \
       --timeout 10000
     `]));
@@ -79,19 +69,6 @@ class Lib extends DefaultRegistry {
 
 
     /*
-     * mocha:report
-     */
-    gulp.task(prefix + 'lib:mocha:report', shell.task([`
-      mocha ${dir.test}*.js \
-      --require babel-register \
-      --reporter mocha-junit-reporter \
-      --reporter-options mochaFile=${dir.report} \
-      -g '^(?!EXCLUDE)' \
-      --timeout 10000
-    `]));
-
-
-    /*
      * watch
      */
     gulp.task(prefix + 'lib:watch', () => {
@@ -102,6 +79,29 @@ class Lib extends DefaultRegistry {
         )
         .on('error', err => process.exit(1));
     });
+
+
+    /*
+     * copy
+     */
+    gulp.task(prefix + 'lib:copy', shell.task([`
+      mkdir -p ${dir.root + '../js'};
+      if [ ! -f ${dir.root + '../js/ready.js'} ]; then
+        cp -n ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
+      fi
+      if [ ! -f ${dir.root + '../js/ready-settings.js'} ]; then
+        cp -n ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
+      fi
+      if [ ! -f ${dir.root + '../js/ready.min.js'} ]; then
+        uglifyjs ${dir.src + 'ready.js'} -o ${dir.root + '../js/ready.min.js'};
+      fi
+      if [ ! -f ${dir.root + '../js/lib.hjson'} ]; then
+        printf "\n";
+        printf "specify the paths in ../js/lib.hjson. (from the same directory as node_modules)";
+        printf "\n\n";
+        cp -n ${dir.src + 'lib.hjson.sample'} ${dir.root + '../js/lib.hjson'};
+      fi
+    `]));
 
 
     /*
