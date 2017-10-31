@@ -118,9 +118,7 @@ class Lib extends DefaultRegistry {
     gulp.task(prefix + 'lib:build', gulp.series(
         prefix + 'lib:copy',
         prefix + 'lib:mocha:report',
-        prefix + 'lib:mocha:cover',
-        prefix + 'lib',
-        prefix + 'lib:min'
+        prefix + 'lib:mocha:cover'
     ));
   }
 };
