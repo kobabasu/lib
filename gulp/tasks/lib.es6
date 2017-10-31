@@ -83,7 +83,7 @@ class Lib extends DefaultRegistry {
           ],
           gulp.series(
             prefix + 'lib',
-            prefix + 'lib:min',
+            prefix + 'lib:min'
           )
         )
         .on('error', err => process.exit(1));
@@ -95,7 +95,7 @@ class Lib extends DefaultRegistry {
      */
     gulp.task(prefix + 'lib:copy', gulp.series(
       shell.task([`
-        if [ ! -d ${dir.content + '/lib.hjson'} ]; then
+        if [ ! -f ${dir.content + '/lib.hjson'} ]; then
           mkdir -p ${dir.content};
           cp -r ${dir.root + '/javascript/*'} ${dir.content}/;
         fi
