@@ -9,17 +9,22 @@
  * nameはtask名の先頭になる
  */
 
-const root = './';
+import path from 'path';
+
+const ROOT = './';
+const CONTENT_DIRNAME = 'javascript';
+const DIST_DIRNAME = 'js';
 
 export const dir = {
   name: '',
 
-  root:    root,
-  src:     root + 'src/',
-  modules: root + 'modules/',
-  test:    root + 'test/',
-  dist:    root + '../js/',
-  setting: root + '../js/',
-  docs:    root + 'docs/lib/',
-  report:  root + 'results/test-results.xml'
+  root:    ROOT,
+  content: path.dirname(ROOT) + '/' + CONTENT_DIRNAME + '/',
+
+  src:     ROOT + 'src/',
+  dist:    path.dirname(ROOT) + '/' + DIST_DIRNAME,
+  test:    ROOT + 'test/',
+  report:  ROOT + 'results/test-results.xml',
+
+  modules: ROOT + 'modules/'
 }

@@ -10,13 +10,15 @@ class Lib extends DefaultRegistry {
 
   init() {
     // task名の接頭辞を設定
-    let prefix = (dir.name == '') ? '' : dir.name + ':';
+    const prefix = (dir.name == '') ? '' : dir.name + ':';
 
     /*
      * lib
      */
     gulp.task(prefix + 'lib', shell.task([`
-      hjson -j ${dir.setting + 'lib.hjson'} | jq -c '.[]' | xargs cat > ${dir.root + '../js/lib.js'}
+      hjson -j ${dir.content + '/lib.hjson'} | \
+      jq -c '.[]' | \
+      xargs -I {} cat ${dir.modules}/{} > ${dir.dist + '/lib.js'}
     `]));
 
 
@@ -24,30 +26,9 @@ class Lib extends DefaultRegistry {
      * min
      */
     gulp.task(prefix + 'lib:min', shell.task([`
-      hjson -j ${dir.setting + 'lib.hjson'} | jq -c '.[]' | xargs uglifyjs -c -o ${dir.root + '../js/lib.min.js'}
-    `]));
-
-
-    /*
-     * copy
-     */
-    gulp.task(prefix + 'lib:copy', shell.task([`
-      mkdir -p ${dir.root + '../js'};
-      if [ ! -f ${dir.root + '../js/ready.js'} ]; then
-        cp -n ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
-      fi
-      if [ ! -f ${dir.root + '../js/ready-settings.js'} ]; then
-        cp -n ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
-      fi
-      if [ ! -f ${dir.root + '../js/ready.min.js'} ]; then
-        uglifyjs ${dir.src + 'ready.js'} -o ${dir.root + '../js/ready.min.js'};
-      fi
-      if [ ! -f ${dir.root + '../js/lib.hjson'} ]; then
-        printf "\n";
-        printf "specify the paths in ../js/lib.hjson. (from the same directory as node_modules)";
-        printf "\n\n";
-        cp -n ${dir.src + 'lib.hjson.sample'} ${dir.root + '../js/lib.hjson'};
-      fi
+      hjson -j ${dir.content + '/lib.hjson'} | \
+      jq -c '.[]' | \
+      xargs -I {} uglifyjs ${dir.modules}/{} -c -o ${dir.dist + '/lib.min.js'}
     `]));
 
 
@@ -55,8 +36,21 @@ class Lib extends DefaultRegistry {
      * mocha
      */
     gulp.task(prefix + 'lib:mocha', shell.task([`
-      mocha ${dir.test}*.js \
+      mocha ${dir.test}/*.js \
       --require babel-register \
+      -g '^(?!EXCLUDE)' \
+      --timeout 10000
+    `]));
+
+
+    /*
+     * mocha:report
+     */
+    gulp.task(prefix + 'lib:mocha:report', shell.task([`
+      mocha ${dir.test}/*.js \
+      --require babel-register \
+      --reporter mocha-junit-reporter \
+      --reporter-options mochaFile=${dir.report} \
       -g '^(?!EXCLUDE)' \
       --timeout 10000
     `]));
@@ -71,21 +65,8 @@ class Lib extends DefaultRegistry {
       --reporter=lcov \
       --reporter=text \
       --reporter=cobertura \
-      mocha ${dir.test}*.js \
+      mocha ${dir.test}/*.js \
       --require babel-register \
-      -g '^(?!EXCLUDE)' \
-      --timeout 10000
-    `]));
-
-
-    /*
-     * mocha:report
-     */
-    gulp.task(prefix + 'lib:mocha:report', shell.task([`
-      mocha ${dir.test}*.js \
-      --require babel-register \
-      --reporter mocha-junit-reporter \
-      --reporter-options mochaFile=${dir.report} \
       -g '^(?!EXCLUDE)' \
       --timeout 10000
     `]));
@@ -97,11 +78,37 @@ class Lib extends DefaultRegistry {
     gulp.task(prefix + 'lib:watch', () => {
       gulp
         .watch(
-          [lib.src, lib.modules, lib.test],
-          gulp.series(prefix + 'lib:mocha')
+          [
+            dir.src + '/**/*.*',
+          ],
+          gulp.series(
+            prefix + 'lib',
+            prefix + 'lib:min',
+          )
         )
         .on('error', err => process.exit(1));
     });
+
+
+    /*
+     * copy
+     */
+    gulp.task(prefix + 'lib:copy', gulp.series(
+      shell.task([`
+        if [ ! -d ${dir.content + '/lib.hjson'} ]; then
+          mkdir -p ${dir.content};
+          cp -r ${dir.root + '/javascript/*'} ${dir.content}/;
+        fi
+
+        if [ ! -f ${dir.dist + '/ready.js'} ]; then
+          mkdir -p ${dir.dist};
+          cp -n ${dir.src + '/ready.js'} ${dir.dist + '/ready.js'};
+          uglifyjs ${dir.src + '/ready.js'} -o ${dir.dist + '/ready.min.js'};
+        fi
+      `]),
+      prefix + 'lib',
+      prefix + 'lib:min'
+    ));
 
 
     /*

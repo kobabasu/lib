@@ -6,10 +6,10 @@ import { dir } from '../gulp/dir.es6'
 
 const URL = 'about:blank';
 const HTML = 'test/Example.test.html';
-// const JS = 'modules/UpdateCopyright.js';
+// const JS = 'src/modules/UpdateCopyright.js';
 
 const fetch = (filename) => {
-  const filepath = dir.root + filename;
+  const filepath = dir.root + '/' + filename;
   return fs.readFileSync(filepath, 'utf-8');
 }
 

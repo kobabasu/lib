@@ -3,14 +3,14 @@ import { assert } from 'chai'
 import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
 import { dir } from '../gulp/dir.es6'
-import InnerLink from '../modules/InnerLink.js'
+import InnerLink from '../src/modules/InnerLink.js'
 
 const URL = 'about:blank';
 const HTML = './test/InnerLink.test.html';
-const JS = './modules/InnerLink.js';
+const JS = './src/modules/InnerLink.js';
 
 const fetch = (filename) => {
-  const filepath = dir.root + filename;
+  const filepath = dir.root + '/' + filename;
   return fs.readFileSync(filepath, 'utf-8');
 }
 
