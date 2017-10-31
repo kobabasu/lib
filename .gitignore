@@ -4,6 +4,7 @@ node_modules/
 /vendor/
 package-lock.json
 yarn.lock
+yarn-error.log
 
 # config
 package.json
