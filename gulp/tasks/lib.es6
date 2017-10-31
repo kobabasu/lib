@@ -80,7 +80,6 @@ class Lib extends DefaultRegistry {
         .watch(
           [
             dir.src + '/**/*.*',
-            dir.modules + '/**/*.*'
           ],
           gulp.series(
             prefix + 'lib',
