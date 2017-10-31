@@ -27,7 +27,7 @@ jobs:
           - v1-dependencies-{{ checksum "bower.json" }}
           - v1-dependencies-
 
-      - run: npm install
+      - run: yes 1 | yarn install --flat
 
       - run: bower install
 
@@ -40,8 +40,6 @@ jobs:
           paths:
             - vendor
           key: v1-dependencies-{{ checksum "bower.json" }}
-        
-      - run: npm test
 
       - store_test_results:
           path: ./results
