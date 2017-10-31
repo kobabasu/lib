@@ -93,25 +93,22 @@ class Lib extends DefaultRegistry {
     /*
      * copy
      */
-    gulp.task(prefix + 'lib:copy', shell.task([`
-      echo ${dir.content};
-      mkdir -p ${dir.content};
-      if [ ! -f ${dir.content + '/ready.js'} ]; then
-        cp -n ${dir.src + '/ready.js'} ${dir.content + '/ready.js'};
-      fi
-      if [ ! -f ${dir.content + '/ready-settings.js'} ]; then
-        cp -n ${dir.src + '/ready-settings.js'} ${dir.content + '/ready-settings.js'};
-      fi
-      if [ ! -f ${dir.content + '/ready.min.js'} ]; then
-        uglifyjs ${dir.src + '/ready.js'} -o ${dir.content + '/ready.min.js'};
-      fi
-      if [ ! -f ${dir.content + '/lib.hjson'} ]; then
-        printf "\n";
-        printf "specify the paths in lib.hjson. (from the same directory as node_modules)";
-        printf "\n\n";
-        cp -n ${dir.src + '/lib.hjson.sample'} ${dir.content + '/lib.hjson'};
-      fi
-    `]));
+    gulp.task(prefix + 'lib:copy', gulp.series(
+      shell.task([`
+        if [ ! -d ${dir.content + '/lib.hjson'} ]; then
+          mkdir -p ${dir.content};
+          cp -r ${dir.root + '/javascript/*'} ${dir.content}/;
+        fi
+
+        if [ ! -f ${dir.dist + '/ready.js'} ]; then
+          mkdir -p ${dir.dist};
+          cp -n ${dir.src + '/ready.js'} ${dir.dist + '/ready.js'};
+          uglifyjs ${dir.src + '/ready.js'} -o ${dir.dist + '/ready.min.js'};
+        fi
+      `]),
+      prefix + 'lib',
+      prefix + 'lib:min'
+    ));
 
 
     /*

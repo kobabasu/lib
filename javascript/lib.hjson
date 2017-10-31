@@ -1,0 +1,28 @@
+/**
+ * lib.hjson
+ * @file ページで利用するmodules
+ *
+ * ファイル名を記載する
+ * gulp lib, gulp lib:minで利用
+ */
+
+[
+  /*
+   * common
+   */
+  "ImageSrcset.js",
+  "DetectViewport.js",
+  "InnerLink.js",
+  "InView.js",
+  "ScrollIt.js",
+  "ScrollTop.js",
+  "SlideMenu.js",
+  // "HumbergerMenu.js",
+
+  /*
+   * options
+   */
+  "SlideShow.js",
+  "RippleEffect.js",
+  "UpdateCopyright.js"
+]
