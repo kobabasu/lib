@@ -16,7 +16,9 @@ class Lib extends DefaultRegistry {
      * lib
      */
     gulp.task(prefix + 'lib', shell.task([`
-      hjson -j ${dir.setting + 'lib.hjson'} | jq -c '.[]' | xargs cat > ${dir.root + '../js/lib.js'}
+      hjson -j ${dir.content + '/lib.hjson'} | \
+      jq -c '.[]' | \
+      xargs cat > ${dir.content + '/lib.js'}
     `]));
 
 
@@ -24,7 +26,9 @@ class Lib extends DefaultRegistry {
      * min
      */
     gulp.task(prefix + 'lib:min', shell.task([`
-      hjson -j ${dir.setting + 'lib.hjson'} | jq -c '.[]' | xargs uglifyjs -c -o ${dir.root + '../js/lib.min.js'}
+      hjson -j ${dir.content + '/lib.hjson'} | \
+      jq -c '.[]' | \
+      xargs uglifyjs -c -o ${dir.root + '/lib.min.js'}
     `]));
 
 
@@ -32,7 +36,7 @@ class Lib extends DefaultRegistry {
      * mocha
      */
     gulp.task(prefix + 'lib:mocha', shell.task([`
-      mocha ${dir.test}*.js \
+      mocha ${dir.test}/*.js \
       --require babel-register \
       -g '^(?!EXCLUDE)' \
       --timeout 10000
@@ -43,7 +47,7 @@ class Lib extends DefaultRegistry {
      * mocha:report
      */
     gulp.task(prefix + 'lib:mocha:report', shell.task([`
-      mocha ${dir.test}*.js \
+      mocha ${dir.test}/*.js \
       --require babel-register \
       --reporter mocha-junit-reporter \
       --reporter-options mochaFile=${dir.report} \
@@ -85,21 +89,22 @@ class Lib extends DefaultRegistry {
      * copy
      */
     gulp.task(prefix + 'lib:copy', shell.task([`
-      mkdir -p ${dir.root + '../js'};
-      if [ ! -f ${dir.root + '../js/ready.js'} ]; then
-        cp -n ${dir.src + 'ready.js'} ${dir.root + '../js/ready.js'};
+      echo ${dir.content};
+      mkdir -p ${dir.content};
+      if [ ! -f ${dir.content + '/ready.js'} ]; then
+        cp -n ${dir.src + '/ready.js'} ${dir.content + '/ready.js'};
       fi
-      if [ ! -f ${dir.root + '../js/ready-settings.js'} ]; then
-        cp -n ${dir.src + 'ready-settings.js'} ${dir.root + '../js/ready-settings.js'};
+      if [ ! -f ${dir.content + '/ready-settings.js'} ]; then
+        cp -n ${dir.src + '/ready-settings.js'} ${dir.content + '/ready-settings.js'};
       fi
-      if [ ! -f ${dir.root + '../js/ready.min.js'} ]; then
-        uglifyjs ${dir.src + 'ready.js'} -o ${dir.root + '../js/ready.min.js'};
+      if [ ! -f ${dir.content + '/ready.min.js'} ]; then
+        uglifyjs ${dir.src + '/ready.js'} -o ${dir.content + '/ready.min.js'};
       fi
-      if [ ! -f ${dir.root + '../js/lib.hjson'} ]; then
+      if [ ! -f ${dir.content + '/lib.hjson'} ]; then
         printf "\n";
-        printf "specify the paths in ../js/lib.hjson. (from the same directory as node_modules)";
+        printf "specify the paths in lib.hjson. (from the same directory as node_modules)";
         printf "\n\n";
-        cp -n ${dir.src + 'lib.hjson.sample'} ${dir.root + '../js/lib.hjson'};
+        cp -n ${dir.src + '/lib.hjson.sample'} ${dir.content + '/lib.hjson'};
       fi
     `]));
 
