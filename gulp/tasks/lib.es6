@@ -65,7 +65,7 @@ class Lib extends DefaultRegistry {
       --reporter=lcov \
       --reporter=text \
       --reporter=cobertura \
-      mocha ${dir.test}*.js \
+      mocha ${dir.test}/*.js \
       --require babel-register \
       -g '^(?!EXCLUDE)' \
       --timeout 10000
