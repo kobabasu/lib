@@ -10,7 +10,7 @@ const HTML = './test/RippleEffect.test.html';
 const JS = './modules/RippleEffect.js';
 
 const fetch = (filename) => {
-  const filepath = dir.root + filename;
+  const filepath = dir.root + '/' + filename;
   return fs.readFileSync(filepath, 'utf-8');
 }
 

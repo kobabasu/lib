@@ -10,7 +10,7 @@ const HTML = './test/ScrollTop.test.html';
 const JS = './modules/ScrollTop.js';
 
 const fetch = (filename) => {
-  const filepath = dir.root + filename;
+  const filepath = dir.root + '/' + filename;
   return fs.readFileSync(filepath, 'utf-8');
 }
 
