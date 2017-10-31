@@ -40,7 +40,7 @@ jobs:
           paths:
             - vendor
           key: v1-dependencies-{{ checksum "bower.json" }}
-        
+
       - run: npm test
 
       - store_test_results:
