@@ -1,10 +1,6 @@
 /**
- * rootはnode_modulesが存在するディレクトリからのレポジトリの
+ * ROOTはnode_modulesが存在するディレクトリからのレポジトリの
  * ドキュメントルートを指定
- *
- * settingは使用するmodulesの一覧
- * defaultは./src/だが、../js/などとして使用する
- * lib.hjsonがある場所を指定
  *
  * nameはtask名の先頭になる
  */
