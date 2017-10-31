@@ -78,8 +78,14 @@ class Lib extends DefaultRegistry {
     gulp.task(prefix + 'lib:watch', () => {
       gulp
         .watch(
-          [lib.src, lib.modules, lib.test],
-          gulp.series(prefix + 'lib:mocha')
+          [
+            dir.src + '/**/*.*',
+            dir.modules + '/**/*.*'
+          ],
+          gulp.series(
+            prefix + 'lib',
+            prefix + 'lib:min',
+          )
         )
         .on('error', err => process.exit(1));
     });
