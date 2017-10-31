@@ -103,6 +103,7 @@ class Lib extends DefaultRegistry {
         if [ ! -f ${dir.dist + '/ready.js'} ]; then
           mkdir -p ${dir.dist};
           cp -n ${dir.src + '/ready.js'} ${dir.dist + '/ready.js'};
+          cp -n ${dir.src + '/ready-settings.js'} ${dir.dist + '/ready-settings.js'};
           uglifyjs ${dir.src + '/ready.js'} -o ${dir.dist + '/ready.min.js'};
         fi
       `]),
