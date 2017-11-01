@@ -31,14 +31,13 @@
     "jsdom": "*",
 
     "babel-core": "*",
-    "babel-preset-es2015": "*",
+    "babel-preset-env": "*",
     "babel-plugin-istanbul": "*",
     "gulp": "gulpjs/gulp#4.0"
   },
 
   "scripts": {
-    "global": "npm install -g chromium jq hjson uglify-js nyc mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli",
-    "preinstall": "mkdir -p ../js",
+    "global": "npm install -g chromium jq hjson uglify-js nyc mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli bower",
     "postinstall": "gulp lib:build",
     "test": "nyc --cache false --reporter=lcov --reporter=text --reporter=cobertura gulp lib:mocha:report"
   },

@@ -1,14 +1,15 @@
 [![CircleCI](https://circleci.com/gh/kobabasu/micro-lib.svg?style=shield&circle-token=14c34d44469b7917518845857413cc7156d32fd9)](https://circleci.com/gh/kobabasu/micro-lib)
 
 # micro-lib
+es6を利用するためbabelが必要
 
 ```
 git submodule add git@github.com-kobabasu:kobabasu/micro-lib.git lib
-git submodule init && git submodule update
+git submodule update
 ```
 
 ## npm
-preinstallでひとつ上の階層にstylesheets/が作成される
+preinstallでひとつ上の階層にjs/, javascript/が作成される
 変更はその中で行う
 1. 必要があればdevelopブランチを使う  
    `git checkout develop`
@@ -43,7 +44,7 @@ example用の`test/*.html`で読み込むようにtest専用のライブラリ�
 Dockerfileを編集しbuildしdocker hubにpush
 
 1. `hub clone cores/cores-vagrant coreos`
-1. config.rb, user-dataをコピー
+1. config.rbをコピー
 1. config.rbを編集
 1. `shared_folder`でレポジトリのルートを共有
 1. `docker build -t kobabasu/alpine-chrome:0.xx` /home/core/share`
@@ -61,19 +62,21 @@ Dockerfileを編集しbuildしdocker hubにpush
    lib.hjsonに記述されたファイルをconcatするのみ
 1. `gulp [prefix]:lib:min`  
    lib.hjsonに記述されたファイルをuglifyjsを使い結合、圧縮
-1. `gulp [prefix]:lib:copy`  
-   src/からlib.hjson, ready.js, ready-settings.jsコピーし、uglifyjsでready.min.jsを圧縮・生成 (存在すればコピーしない)
 1. `gulp [prefix]:lib:mocha`  
    mochaでtestディレクトリ内の`js`拡張子が付いたファイルをtest
 1. `gulp [prefix]:lib:mocha:report`  
    mochaでtestディレクトリ内の`js`拡張子が付いたファイルをtestしresults/にレポートを作成
+1. `gulp [prefix]:lib:mocha:cover`  
+   nyc(istanbul)でcoverageを測定。coverageディレクトリにreportを出力
 1. `gulp [prefix]:lib:watch`  
-   src/, modules/, test/内のファイルが変更されたらlib:mochaを実行
+   src/内のファイルが変更されたらlib, lib:minを実行
+1. `gulp [prefix]:lib:copy`  
+   src/からlib.hjsonを../javascriptに。ready.js, ready-settings.jsコピーし、uglifyjsでready.min.jsを圧縮・生成 (lib.hjson, ready.jsが存在すればコピーしない)
 1. `gulp [prefix]:lib:build`  
-   lib:mocha:report, lib:copy, lib, lib:minをまとめて実行
+   lib:copy, lib:mocha:report, lib:mocha:coverをまとめて実行
 
 ## build files
-gulp lib:buildで一つ上の階層のjsに以下が生成される
+gulp lib:buildで一つ上の階層の../js, ../javascriptに以下が生成される
 
 1. lib.hjson (lib.jsに含めるmoduleを設定)
 1. ready.js (初期ロード時用ライブラリ)

@@ -1,25 +1,26 @@
 /**
- * rootはnode_modulesが存在するディレクトリからのレポジトリの
+ * ROOTはnode_modulesが存在するディレクトリからのレポジトリの
  * ドキュメントルートを指定
- *
- * settingは使用するmodulesの一覧
- * defaultは./src/だが、../js/などとして使用する
- * lib.hjsonがある場所を指定
  *
  * nameはtask名の先頭になる
  */
 
-const root = './';
+import path from 'path';
+
+const ROOT = '.';
+const CONTENT_DIR = '../javascript';
+const DIST_DIR = '../js';
 
 export const dir = {
   name: '',
 
-  root:    root,
-  src:     root + 'src/',
-  modules: root + 'modules/',
-  test:    root + 'test/',
-  dist:    root + '../js/',
-  setting: root + '../js/',
-  docs:    root + 'docs/lib/',
-  report:  root + 'results/test-results.xml'
+  root:    ROOT,
+  content: path.join(ROOT + '/' + CONTENT_DIR),
+
+  src:     ROOT + '/src',
+  dist:    path.join(ROOT + '/' + DIST_DIR),
+  test:    ROOT + '/test',
+  report:  ROOT + '/results/test-results.xml',
+
+  modules: ROOT + '/src/modules'
 }
