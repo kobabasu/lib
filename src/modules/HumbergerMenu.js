@@ -31,11 +31,18 @@
     this._class = options['class'] || CLASS_NAME ;
 
     this.attach();
+
+    global.document.body.addEventListener(
+      'transitionend',
+      this.remove,
+      {passive: true}
+    );
   }
 
   HumbergerMenu.prototype = Object.create(Object.prototype, {
     'constructor': { 'value': HumbergerMenu },
-    'attach': { 'value': HumbergerMenu_attach }
+    'attach': { 'value': HumbergerMenu_attach },
+    'remove': { 'value': HumbergerMenu_remove }
   });
 
   function _generate() {
@@ -45,22 +52,41 @@
     return el;
   }
 
+  function HumbergerMenu_remove(e) {
+    if (e.propertyName == 'width') {
+      global.document.body.removeEventListener(
+        'transitionend',
+        this.remove,
+        {passive: true}
+      );
+
+      var menu = global.document.querySelector(CLASS_NAME + ' ul');
+      menu.classList.toggle(APPEND_CLASS_NAME_ACTIVE);
+
+      if (menu.classList.contains(APPEND_CLASS_NAME_ACTIVE) == false) {
+        menu.style.opacity = 0;
+      } else {
+        menu.style.opacity = 1;
+      }
+    }
+  }
+
   function HumbergerMenu_attach() {
     if (global.document.querySelector(CLASS_NAME)) {
       var icon = _generate();
       var nav = global.document.querySelector(CLASS_NAME);
+
       nav.parentNode.insertBefore(icon, nav.nextElementSibling);
 
       icon.addEventListener(
         'click',
         function() {
           global.document.body.classList.toggle(APPEND_CLASS_NAME_ACTIVE);
-          global.document.getElementsByTagName('header')[0]
-            .classList.toggle(APPEND_CLASS_NAME_ACTIVE);
-          nav.classList.toggle(APPEND_CLASS_NAME_ACTIVE);
+
           icon.classList.toggle(APPEND_CLASS_NAME_ACTIVE);
         },
-        {passive: true});
+        {passive: true}
+      );
     }
   }
 
