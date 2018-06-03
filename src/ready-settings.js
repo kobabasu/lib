@@ -34,6 +34,8 @@ var ready = new Ready({
     this.slideshow = new SlideShow();
     this.slideshow.start();
     new RippleEffect();
+    this.toggle = new Toggle();
+    this.toggle.init();
     this.updateCopyright = new UpdateCopyright();
     this.updateCopyright.init();
   },

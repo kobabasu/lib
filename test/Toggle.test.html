@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toggle</title>
+
+  <button class="toggle">button1</button>
+  <button
+    class="toggle with-change-value"
+    data-default="button2"
+    data-active="checked"
+    >button2</button>
+
+  <script src="../src/modules/Toggle.js"></script>
+</head>
+<body>
+
+  <script>
+    var module = new Toggle({
+      debug: true
+    });
+    module.init();
+  </script>
+</body>
+</html>
