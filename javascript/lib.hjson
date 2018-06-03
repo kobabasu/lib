@@ -24,5 +24,6 @@
    */
   "SlideShow.js",
   "RippleEffect.js",
+  "Toggle.js",
   "UpdateCopyright.js"
 ]
