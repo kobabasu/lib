@@ -1,2 +1,3 @@
+-g '^(?!EXCLUDE)'
 --require @babel/register
 --timeout 10000
