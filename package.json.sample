@@ -42,7 +42,7 @@
     "postinstall": "yarn run copy && yarn run minify",
     "test": "mocha test/*.js",
     "reporter": "mocha test/*.js --reporter mocha-junit-reporter --reporter-options mochaFile=./results/test-results.xml",
-    "coverage": "nyc --cache false --reporter=lcov --reporter=text --reporter=cobertura mocha test/*.js",
+    "coverage": "nyc mocha test/*.js",
     "watch": "watch 'yarn run minify' ../javascript"
   },
 
