@@ -29,8 +29,9 @@
     "chrome-remote-interface": "*",
     "jsdom": "*",
 
-    "babel-core": "*",
-    "babel-preset-env": "*",
+    "@babel/core": "*",
+    "@babel/register": "*",
+    "@babel/preset-env": "*",
     "babel-plugin-istanbul": "*",
     "gulp": "gulpjs/gulp#4.0"
   },
