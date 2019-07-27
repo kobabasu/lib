@@ -32,8 +32,7 @@
     "@babel/core": "*",
     "@babel/register": "*",
     "@babel/preset-env": "*",
-    "babel-plugin-istanbul": "*",
-    "gulp": "gulpjs/gulp#4.0"
+    "babel-plugin-istanbul": "*"
   },
 
   "scripts": {
