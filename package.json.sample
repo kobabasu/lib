@@ -35,9 +35,15 @@
   },
 
   "scripts": {
-    "global": "npm install -g chromium jq hjson uglify-js nyc mocha mocha-junit-reporter github:gulpjs/gulp.git#4.0 gulp-shell gulp-cli bower",
-    "postinstall": "gulp lib:build",
-    "test": "nyc --cache false --reporter=lcov --reporter=text --reporter=cobertura gulp lib:mocha:report"
+    "global": "npm install -g chromium jq hjson uglify-js watch nyc mocha",
+    "copy": "cp -r ./javascript ../ && find ./src -name 'ready*' -exec cp -i {} ../javascript/ \\;",
+    "build": "hjson -j ../javascript/lib.hjson | jq -c '.[]' | xargs -I{} cat ./src/modules/{} > ../js/lib.js && find ./javascript -name 'ready*' -exec cp -i {} ../js/ \\;",
+    "minify": "yarn run build && find ../js -type f -a ! -name '*.min.js' -exec basename {} .js \\; | xargs -I{} uglifyjs ../js/{}.js -c -o ../js/{}.min.js",
+    "postinstall": "yarn run copy && yarn run minify",
+    "test": "mocha test/RippleEffect.test.js --require @babel/register -g '^(!EXCLUDE)' --timeout 10000",
+    "reporter": "mocha test/*.js --require @babel/register --reporter mocha-junit-reporter --reqporter-options mochaFile=./results/test-results.xml -g '^(?!EXCLUDE)' --timeout 10000",
+    "coverage": "nyc --cache false --reporter=lcov --reporter=text --reporter=cobertura mocha test/*.js --require @babel/register -g '^(?!EXCLUDE)' --timeout 10000",
+    "watch": "watch 'yarn run minify' ../javascript"
   },
 
   "preferGlobal": true,
