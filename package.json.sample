@@ -34,7 +34,7 @@
   },
 
   "scripts": {
-    "global": "npm install -g chromium jq hjson uglify-js watch nyc mocha",
+    "global": "npm install -g chromium uglify-js watch nyc mocha",
     "copy": "cp -r ./javascript ../ && find ./src -name 'ready*' -exec cp -i {} ../javascript/ \\;",
     "concat": "bash ./src/concat.sh",
     "build": "yarn run concat && yarn run minify",
