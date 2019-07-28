@@ -1,16 +1,9 @@
 # common
 .DS_Store
 node_modules/
-/vendor/
-package-lock.json
-yarn.lock
 yarn-error.log
 
 # config
-package.json
-bower.json
-gulpfile.babel.js
-gulp/dir.es6
 src/lib.js
 
 # build files

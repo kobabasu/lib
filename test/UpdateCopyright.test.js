@@ -5,7 +5,6 @@ import { JSDOM } from 'jsdom'
 import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
 
-import { dir } from '../gulp/dir.es6'
 import UpdateCopyright from '../src/modules/UpdateCopyright.js'
 
 const URL = 'about:blank';
@@ -13,7 +12,7 @@ const HTML = './test/UpdateCopyright.test.html';
 const JS = './src/modules/UpdateCopyright.js';
 
 const fetch = (filename) => {
-  const filepath = dir.root + '/' + filename;
+  const filepath = './' + filename;
   return fs.readFileSync(filepath, 'utf-8');
 }
 

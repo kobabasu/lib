@@ -2,7 +2,6 @@ import fs from 'fs'
 import { assert } from 'chai'
 import { launch } from 'chrome-launcher'
 import CDP from 'chrome-remote-interface'
-import { dir } from '../gulp/dir.es6'
 import ScrollTop from '../src/modules/ScrollTop.js'
 
 const URL = 'about:blank';
@@ -10,7 +9,7 @@ const HTML = './test/ScrollTop.test.html';
 const JS = './src/modules/ScrollTop.js';
 
 const fetch = (filename) => {
-  const filepath = dir.root + '/' + filename;
+  const filepath = './' + filename;
   return fs.readFileSync(filepath, 'utf-8');
 }
 

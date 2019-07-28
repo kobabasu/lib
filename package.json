@@ -16,23 +16,22 @@
     "linux",
     "!win32"
   ],
-
   "dependencies": {},
-
   "devDependencies": {
-    "@babel/core": "*",
-    "@babel/register": "*",
-    "@babel/preset-env": "*",
-    "babel-plugin-istanbul": "*",
-    "chrome-launcher": "*",
-    "chrome-remote-interface": "*",
-    "jsdom": "*",
-    "mocha": "*",
-    "mocha-junit-reporter": "*",
-    "chai": "*",
-    "sinon": "*"
-  },
+    "@babel/core": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-plugin-istanbul": "^5.2.0",
 
+    "chrome-launcher": "^0.11.1",
+    "chrome-remote-interface": "^0.27.2",
+    "jsdom": "^15.1.1",
+
+    "mocha": "^6.2.0",
+    "mocha-junit-reporter": "^1.23.1",
+    "chai": "^4.2.0",
+    "sinon": "^7.3.2"
+  },
   "scripts": {
     "global": "npm install -g chromium nyc uglify-js mocha watch",
     "copy": "cp -r ./javascript .. & mkdir -p ../js && cp ./src/ready.js ../js",
@@ -45,7 +44,6 @@
     "coverage": "nyc mocha test/*.js",
     "watch": "watch 'yarn run build' ../javascript"
   },
-
   "preferGlobal": true,
   "author": "kobabasu",
   "license": "MIT"

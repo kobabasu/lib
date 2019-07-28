@@ -1,2 +1,4 @@
---require babel-register
+-g '^(?!EXCLUDE)'
+--require @babel/register
 --timeout 10000
+--reporter-options mochaFile=./results/test-results.xml
