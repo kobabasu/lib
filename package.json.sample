@@ -39,11 +39,11 @@
     "concat": "bash ./src/concat.sh",
     "build": "yarn run concat && yarn run minify",
     "minify": "bash ./src/minify.sh",
-    "postinstall": "yarn run copy && yarn run minify",
+    "postinstall": "yarn run copy && yarn run build",
     "test": "mocha test/*.js",
     "reporter": "mocha test/*.js --reporter mocha-junit-reporter",
     "coverage": "nyc mocha test/*.js",
-    "watch": "watch 'yarn run minify' ../javascript"
+    "watch": "watch 'yarn run build' ../javascript"
   },
 
   "preferGlobal": true,
