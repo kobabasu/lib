@@ -1,0 +1,50 @@
+{
+  "name": "micro-lib",
+  "version": "0.1.0",
+  "description": "javascript lib minimum app",
+  "main": "./src/ready.js",
+  "repository": {
+    "type": "git",
+    "url": "//github.com/kobabasu/micro-lib.git"
+  },
+  "keywords": [
+    "mocha",
+    "chai"
+  ],
+  "os": [
+    "darwin",
+    "linux",
+    "!win32"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-plugin-istanbul": "^5.2.0",
+
+    "chrome-launcher": "^0.11.1",
+    "chrome-remote-interface": "^0.27.2",
+    "jsdom": "^15.1.1",
+
+    "mocha": "^6.2.0",
+    "mocha-junit-reporter": "^1.23.1",
+    "chai": "^4.2.0",
+    "sinon": "^7.3.2"
+  },
+  "scripts": {
+    "global": "npm install -g chromium nyc uglify-js mocha watch",
+    "copy": "cp -r ./javascript .. & mkdir -p ../js && cp ./src/ready.js ../js",
+    "concat": "bash ./src/concat.sh",
+    "minify": "bash ./src/minify.sh",
+    "build": "yarn run concat && yarn run minify",
+    "postinstall": "yarn run copy && yarn run build",
+    "test": "mocha test/*.js",
+    "reporter": "mocha test/*.js --reporter mocha-junit-reporter",
+    "coverage": "nyc mocha test/*.js",
+    "watch": "watch 'yarn run build' ../javascript"
+  },
+  "preferGlobal": true,
+  "author": "kobabasu",
+  "license": "MIT"
+}
