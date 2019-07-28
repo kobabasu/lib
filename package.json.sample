@@ -36,7 +36,8 @@
   "scripts": {
     "global": "npm install -g chromium jq hjson uglify-js watch nyc mocha",
     "copy": "cp -r ./javascript ../ && find ./src -name 'ready*' -exec cp -i {} ../javascript/ \\;",
-    "build": "hjson -j ../javascript/lib.hjson | jq -c '.[]' | xargs -I{} cat ./src/modules/{} > ../js/lib.js && find ./javascript -name 'ready*' -exec cp -i {} ../js/ \\;",
+    "concat": "bash ./src/concat.sh",
+    "build": "yarn run concat && yarn run minify",
     "minify": "yarn run build && find ../js -type f -a ! -name '*.min.js' -exec basename {} .js \\; | xargs -I{} uglifyjs ../js/{}.js -c -o ../js/{}.min.js",
     "postinstall": "yarn run copy && yarn run minify",
     "test": "mocha test/*.js",
