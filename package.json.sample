@@ -34,11 +34,11 @@
   },
 
   "scripts": {
-    "global": "npm install -g chromium uglify-js watch nyc mocha",
-    "copy": "cp -r ./javascript ../ && find ./src -name 'ready*' -exec cp -i {} ../javascript/ \\;",
+    "global": "npm install -g chromium nyc uglify-js mocha watch",
+    "copy": "cp -r ./javascript .. & mkdir -p ../js && cp ./src/ready.js ../js",
     "concat": "bash ./src/concat.sh",
-    "build": "yarn run concat && yarn run minify",
     "minify": "bash ./src/minify.sh",
+    "build": "yarn run concat && yarn run minify",
     "postinstall": "yarn run copy && yarn run build",
     "test": "mocha test/*.js",
     "reporter": "mocha test/*.js --reporter mocha-junit-reporter",
