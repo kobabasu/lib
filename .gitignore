@@ -4,7 +4,6 @@ node_modules/
 yarn-error.log
 
 # config
-package.json
 src/lib.js
 
 # build files
