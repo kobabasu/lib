@@ -38,7 +38,7 @@
     "copy": "cp -r ./javascript ../ && find ./src -name 'ready*' -exec cp -i {} ../javascript/ \\;",
     "concat": "bash ./src/concat.sh",
     "build": "yarn run concat && yarn run minify",
-    "minify": "yarn run build && find ../js -type f -a ! -name '*.min.js' -exec basename {} .js \\; | xargs -I{} uglifyjs ../js/{}.js -c -o ../js/{}.min.js",
+    "minify": "bash ./src/minify.sh",
     "postinstall": "yarn run copy && yarn run minify",
     "test": "mocha test/*.js",
     "reporter": "mocha test/*.js --reporter mocha-junit-reporter",
