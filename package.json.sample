@@ -24,7 +24,6 @@
     "@babel/register": "*",
     "@babel/preset-env": "*",
     "babel-plugin-istanbul": "*",
-    "chai": "*",
     "chrome-launcher": "*",
     "chrome-remote-interface": "*",
     "jsdom": "*",
