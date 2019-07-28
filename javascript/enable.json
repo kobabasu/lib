@@ -1,0 +1,26 @@
+{
+  "//": [
+    "lib.jsに含めるmodulesのファイル名",
+    "無効にする場合は先頭に//を記述",
+    "common, optionsなどのkeyはコメント代わり",
+    "どちらに追加しても違いはない"
+  ],
+
+  "common": [
+    "ImageSrcset.js",
+    "DetectViewport.js",
+    "InnerLink.js",
+    "InView.js",
+    "ScrollIt.js",
+    "ScrollTop.js",
+    "SlideMenu.js",
+    "// HumbergerMenu.js"
+  ],
+
+  "options": [
+    "SlideShow.js",
+    "RippleEffect.js",
+    "Toggle.js",
+    "UpdateCopyright.js"
+  ]
+}
