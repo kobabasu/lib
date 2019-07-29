@@ -33,7 +33,7 @@
     "sinon": "^7.3.2"
   },
   "scripts": {
-    "global": "npm install -g chromium nyc uglify-js mocha watch",
+    "global": "npm install -g chromium nyc uglify-js mocha watch @babel/register @babel/core @babel/preset-env",
     "copy": "cp -r ./javascript .. & mkdir -p ../js && cp ./src/ready.js ../js",
     "concat": "bash ./src/concat.sh",
     "minify": "bash ./src/minify.sh",

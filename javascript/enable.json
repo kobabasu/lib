@@ -9,18 +9,18 @@
   "common": [
     "ImageSrcset.js",
     "DetectViewport.js",
-    "InnerLink.js",
-    "InView.js",
-    "ScrollIt.js",
     "ScrollTop.js",
-    "SlideMenu.js",
-    "// HumbergerMenu.js"
+    "Toggle.js",
+    "UpdateCopyright.js"
   ],
 
   "options": [
-    "SlideShow.js",
-    "RippleEffect.js",
-    "Toggle.js",
-    "UpdateCopyright.js"
+    "// HumbergerMenu.js",
+    "// InnerLink.js",
+    "// InView.js",
+    "// RippleEffect.js",
+    "// ScrollIt.js",
+    "// SlideMenu.js",
+    "// SlideShow.js"
   ]
 }
