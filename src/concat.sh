@@ -1,19 +1,31 @@
 #!/bin/bash
 #
-# enable.jsonに書かれたmodulesのリストをlib.jsにconcatする
+# lib.js, ready.jsをソースからconcatし生成
 #
 
 
+# ソースファイルのディレクトリ 
+readonly SRC="./src"
 # modulesへのパス
 readonly MODULES="./src/modules"
-# lib.jsに含めるmodulesリストのファイル
-readonly LIST="../javascript/enable.json"
-# 出力するファイル
-readonly DIST="../js/lib.js"
+# 設定ファイルのあるディレクトリ 
+readonly SETTINGS="../javascript"
+# 出力するディレクトリ
+readonly DIST="../js"
 
 
+#
+# modulesをlib.jsにconcat
+#
 {
-  cat $LIST |
+  cat $SETTINGS/enable.json |
   sed -n 's/.*"\([A-Za-z]*\.js\)".*/\1/p' |
   xargs -I{} cat $MODULES/{}
-} >$DIST
+} >$DIST/lib.js
+
+#
+# ready-setting.jsをready.jsにconcat
+#
+{
+  cat $SRC/ready.js $SETTINGS/ready-settings.js
+} >$DIST/ready.js
