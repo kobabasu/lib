@@ -23,28 +23,30 @@ var ready = new Ready({
       'viewport': '(min-width: 1280px)'
     });
     this.viewport5k.init();
-    new InnerLink();
-    this.inview = new InView();
-    this.scrollit = new ScrollIt();
-    this.scrollit.init();
     this.scrolltop = new ScrollTop();
     this.scrolltop.init();
-    new SlideMenu();
-    /* new HumbergerMenu(); */
-    this.slideshow = new SlideShow();
-    this.slideshow.start();
-    new RippleEffect();
     this.toggle = new Toggle();
     this.toggle.init();
     this.updateCopyright = new UpdateCopyright();
     this.updateCopyright.init();
+
+    /* new HumbergerMenu(); */
+    /* new InnerLink(); */
+    /* this.inview = new InView(); */
+    /* new RippleEffect(); */
+    /* this.scrollit = new ScrollIt(); */
+    /* this.scrollit.init(); */
+    /* new SlideMenu(); */
+    /* this.slideshow = new SlideShow(); */
+    /* this.slideshow.start(); */
   },
 
   'scroll': function() {
     this.imagesrcset.lazyload();
-    this.scrollit.animate();
     this.scrolltop.animate();
-    this.inview.animate();
+
+    /* this.inview.animate(); */
+    /* this.scrollit.animate(); */
   },
 
   'resize': function() {
