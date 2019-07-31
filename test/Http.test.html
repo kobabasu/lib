@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>http</title>
+
+  <script src="../src/modules/Http.js"></script>
+</head>
+<body>
+  <h1>http</h1>
+
+  <script>
+    var module = new Http();
+
+    var obj = {
+      'name': 'jiro',
+      'email': 'jiro@example.com'
+    }
+
+    var url = 'https://api.ratesapi.io/api/latest?symbols=JPY';
+    module.get(url).then( function(res) {
+      console.table(res);
+    }).catch( function(e) {
+      console.error(e);
+    });
+
+    /*
+    var url = 'http://localhost:8080/api/users/';
+    module.post(url, obj).then( function(res) {
+      console.table(res);
+    }).catch( function(e) {
+      console.error(e);
+    });
+    */
+
+    /*
+    var url = 'http://localhost:8080/api/users/3';
+    module.put(url, obj).then( function(res) {
+      console.table(res);
+    }).catch( function(e) {
+      console.error(e);
+    });
+    */
+
+    /*
+    var url = 'http://localhost:8080/api/users/3';
+    module.delete(url).then( function(res) {
+      console.table(res);
+    }).catch( function(e) {
+      console.error(e);
+    });
+     */
+  </script>
+</body>
+</html>
