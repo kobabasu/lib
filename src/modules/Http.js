@@ -1,13 +1,7 @@
 /**
  * Http
  *
- * 'div.copyright span'内の年を動的に更新する
- *
- * @param {Object[]} options - 各オプションを指定
- * @param {string} options[].class='.copyright' - 対象となるクラス
- * @param {string} options[].thisyear=Date.getFullYear - 年を指定する
- * @param {string} options[].prefix=null - 年の前に表示する
- * @param {string} options[].debug=false - デバッグモード
+ * Promise, XHRでリソースを操作
  *
  * @return {void}
  */
