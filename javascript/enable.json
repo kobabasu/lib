@@ -21,6 +21,7 @@
     "// RippleEffect.js",
     "// ScrollIt.js",
     "// SlideMenu.js",
-    "// SlideShow.js"
+    "// SlideShow.js",
+    "Http.js"
   ]
 }
