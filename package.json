@@ -34,7 +34,7 @@
   },
   "scripts": {
     "global": "npm install -g chromium nyc uglify-js mocha watch @babel/register @babel/core @babel/preset-env",
-    "copy": "cp -r ./javascript .. & mkdir -p ../js && cp ./src/ready.js ../js",
+    "copy": "rsync -ru ./javascript .. & mkdir -p ../js && rsync -u ./src/ready.js ../js",
     "concat": "bash ./src/concat.sh",
     "minify": "bash ./src/minify.sh",
     "build": "yarn run concat && yarn run minify",
