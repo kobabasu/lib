@@ -87,21 +87,34 @@ Dockerfileを編集しbuildしdocker hubにpush
 1. describe, itのタイトルの先頭にEXCLUDEをつけるとそのテストを無視する
 1. package.json内のscriptは省略しているがmocha, nycのオプションはtest/mocha.opts, .nycrc, .babelrcに記述
 
+
+---
+
 ## npm packages
-- @babel/core - mochaがes6を使っているのでbabelが必要 circleci用にglobalにも必要
-- @babel/register - .nycrcでrequireしてる circleci用にglobalにも必要
-- @babel/preset-env - .babelrcでrequireしてる circleci用にglobalにも必要
-- babel-plugin-istanbul - .babelrcでrequireしてる nycで利用 coverageに必要
-- chrome-launcher - E2Eテストで利用
-- chrome-remote-interface - E2Eテストコードを書きやすくする
-- jsdom - テストコードを書きやすくする
-- mocha - テスト用 globalにも必要
-- mocha-junit-reporter circleci用のレポート出力に必要 test/mocha.optsで設定
-- chai - テスト用ライブラリ
-- sinon - テスト用 spy, stub, mock
+|name                    |desc                                                |
+|:-----------------------|:---------------------------------------------------|
+|@babel/core             |mochaのes6用 circleci用にglobalにも必要             |
+|@babel/register         |.nycrcでrequireしてる circleci用にglobalにも必要    |
+|@babel/preset-env       |.babelrcでrequireしてる circleci用にglobalにも必要  |
+|babel-plugin-istanbul   |.babelrcでrequireしてる circleci用にglobalにも必要  |
+|chrome-launcher         |E2Eテストで利用                                     |
+|chrome-remote-interface |E2Eテストコードを書きやすくする                     |
+|jsdom                   |テストコードを書きやすくする                        |
+|mocha                   |テスト用 globalにも必要                             |
+|mocha-junit-reporter    |circleci用のレポート出力に必要 test/mocha.optsで設定|
+|chai                    |テスト用ライブラリ                                  |
+|sinon                   |テスト用 spy, stub, mock                            |
+
+
+---
+
 
 ## trouble shooting
 1. `yarn run concat`と`yarn run  minify`がエラーとなる場合はsrc/{concat.sh, minify.sh}の実行権限を確認
+
+
+---
+
 
 ## todo
 - [ ] testファイル内のaddScriptToEvaluateOnLoadをchromeのstableでaddScriptToEvaluateOnNewDocumentが使用するようになったら変更する
