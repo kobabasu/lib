@@ -8,13 +8,13 @@ git submodule add git@github.com-kobabasu:kobabasu/micro-lib.git lib
 git submodule update
 ```
 
-## npm
+## yarn 
 preinstallでひとつ上の階層にjs/, javascript/が作成される
 変更はその中で行う
 1. 必要があればdevelopブランチを使う  
    `git checkout develop`
-1. `npm start`
-1. `npm install`
+1. `yarn start`
+1. `yarn install`
 
 ## circleci
 1. githubとcircleciとslackを連携させる
