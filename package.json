@@ -34,14 +34,17 @@
   },
   "scripts": {
     "global": "npm install -g chromium nyc uglify-js mocha watch @babel/register @babel/core @babel/preset-env",
+    "start": "NODE_ENV=development",
     "copy": "rsync -ru ./javascript .. & mkdir -p ../js && rsync -u ./src/ready.js ../js",
     "concat": "bash ./src/concat.sh",
     "minify": "bash ./src/minify.sh",
     "build": "yarn run concat && yarn run minify",
     "postinstall": "yarn run copy && yarn run build",
+
     "test": "mocha test/*.js",
     "reporter": "mocha test/*.js --reporter mocha-junit-reporter",
     "coverage": "nyc mocha test/*.js",
+
     "watch": "watch 'yarn run build' ../javascript"
   },
   "preferGlobal": true,
