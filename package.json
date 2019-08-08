@@ -1,11 +1,11 @@
 {
-  "name": "micro-lib",
+  "name": "lib",
   "version": "0.1.0",
   "description": "javascript lib minimum app",
   "main": "./src/ready.js",
   "repository": {
     "type": "git",
-    "url": "//github.com/kobabasu/micro-lib.git"
+    "url": "//github.com/kobabasu/lib.git"
   },
   "keywords": [
     "mocha",
