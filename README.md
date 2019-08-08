@@ -1,10 +1,10 @@
-[![CircleCI](https://circleci.com/gh/kobabasu/micro-lib.svg?style=shield&circle-token=14c34d44469b7917518845857413cc7156d32fd9)](https://circleci.com/gh/kobabasu/micro-lib)
+[![CircleCI](https://circleci.com/gh/kobabasu/lib.svg?style=shield&circle-token=14c34d44469b7917518845857413cc7156d32fd9)](https://circleci.com/gh/kobabasu/lib)
 
-# micro-lib
+# lib
 es6を利用するためbabelが必要
 
 ```
-git submodule add git@github.com-kobabasu:kobabasu/micro-lib.git lib
+git submodule add git@github.com-kobabasu:kobabasu/lib.git lib
 git submodule update
 ```
 
